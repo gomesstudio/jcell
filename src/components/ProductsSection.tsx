@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { STORE_INFO, CATALOG_ITEMS, IMAGES } from '../data/mockData';
+import { STORE_INFO, CATALOG_ITEMS, IMAGES, CatalogItem } from '../data/mockData';
 import { ImageWithFallback } from './ImageWithFallback';
 
 export const ProductsSection: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [fullscreenItem, setFullscreenItem] = useState<CatalogItem | null>(null);
 
   const getFallbackSrc = (id: string) => {
     switch (id) {
@@ -16,6 +17,25 @@ export const ProductsSection: React.FC = () => {
       default: return undefined;
     }
   };
+
+  // Travar scroll e ouvir tecla Esc para o modal de tela cheia
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setFullscreenItem(null);
+      }
+    };
+    if (fullscreenItem) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [fullscreenItem]);
 
   const scrollToItem = (index: number) => {
     if (carouselRef.current) {
@@ -75,38 +95,42 @@ export const ProductsSection: React.FC = () => {
   }, []);
 
   return (
-    <section id="produtos" className="py-10 sm:py-16 lg:py-24 bg-transparent text-white relative">
+    <section 
+      id="produtos" 
+      className="pt-10 sm:pt-14 lg:pt-18 pb-12 sm:pb-16 lg:pb-20 relative text-white overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #850A19 0%, #9E0D1F 30%, #850A19 70%, #760816 100%)'
+      }}
+    >
+      {/* Brilhos escarlates vivos e discretos para profundidade premium sem ofuscar as artes */}
+      <div 
+        className="absolute inset-0 pointer-events-none select-none z-0"
+        style={{
+          background: 'radial-gradient(ellipse at 50% 50%, rgba(231, 25, 45, 0.32) 0%, rgba(200, 16, 36, 0.10) 50%, transparent 72%)'
+        }}
+        aria-hidden="true"
+      />
+      <div 
+        className="absolute inset-0 pointer-events-none select-none z-0"
+        style={{
+          background: 'radial-gradient(circle at 15% 40%, rgba(231, 25, 45, 0.22) 0%, transparent 60%)'
+        }}
+        aria-hidden="true"
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* 1. Cabeçalho de Seção com Controles do Carrossel */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8 sm:mb-14">
+        {/* 1. Cabeçalho de Seção */}
+        <div className="mb-6 sm:mb-8 lg:mb-10">
           <div className="text-center sm:text-left max-w-xl">
-            <span className="eyebrow-dark block mb-2 text-white/90">Categorias</span>
-            <h2 className="text-section-title font-heading text-white">
+            <span className="inline-block text-white/90 font-bold text-xs sm:text-[13px] tracking-[0.2em] uppercase font-heading mb-2">
+              CATEGORIAS
+            </span>
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] font-heading font-extrabold text-white leading-tight tracking-tight m-0">
               Nossos Produtos
             </h2>
-            <p className="text-sm sm:text-base text-white/80 mt-2">
+            <p className="text-sm sm:text-base text-[#D2CACC] mt-2 leading-relaxed">
               Opções selecionadas para equipar e proteger seus dispositivos com máxima qualidade.
             </p>
-          </div>
-
-          {/* Setas de navegação no cabeçalho (desktop) */}
-          <div className="hidden lg:flex items-center gap-3" aria-label="Navegação do carrossel">
-            <button
-              type="button"
-              onClick={scrollPrev}
-              aria-label="Ver produto anterior"
-              className="w-11 h-11 rounded-full border border-white/25 bg-white/10 hover:bg-[#D7192D] text-white flex items-center justify-center transition-all duration-200 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white backdrop-blur-md active:scale-95"
-            >
-              <i className="fa-solid fa-chevron-left text-sm" aria-hidden="true"></i>
-            </button>
-            <button
-              type="button"
-              onClick={scrollNext}
-              aria-label="Ver próximo produto"
-              className="w-11 h-11 rounded-full border border-white/25 bg-white/10 hover:bg-[#D7192D] text-white flex items-center justify-center transition-all duration-200 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white backdrop-blur-md active:scale-95"
-            >
-              <i className="fa-solid fa-chevron-right text-sm" aria-hidden="true"></i>
-            </button>
           </div>
         </div>
 
@@ -117,7 +141,7 @@ export const ProductsSection: React.FC = () => {
             type="button"
             onClick={scrollPrev}
             aria-label="Voltar para o produto anterior"
-            className="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/65 hover:bg-[#D7192D] text-white flex items-center justify-center backdrop-blur-md border border-white/30 shadow-2xl transition-all duration-200 active:scale-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/70 hover:bg-[#D7192D] text-white flex items-center justify-center backdrop-blur-md border border-white/30 shadow-2xl transition-all duration-200 active:scale-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
           >
             <i className="fa-solid fa-chevron-left text-sm" aria-hidden="true"></i>
           </button>
@@ -127,7 +151,7 @@ export const ProductsSection: React.FC = () => {
             type="button"
             onClick={scrollNext}
             aria-label="Avançar para o próximo produto"
-            className="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/65 hover:bg-[#D7192D] text-white flex items-center justify-center backdrop-blur-md border border-white/30 shadow-2xl transition-all duration-200 active:scale-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/70 hover:bg-[#D7192D] text-white flex items-center justify-center backdrop-blur-md border border-white/30 shadow-2xl transition-all duration-200 active:scale-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
           >
             <i className="fa-solid fa-chevron-right text-sm" aria-hidden="true"></i>
           </button>
@@ -139,13 +163,26 @@ export const ProductsSection: React.FC = () => {
             tabIndex={0}
             aria-label="Carrossel de categorias de produtos"
           >
-            {CATALOG_ITEMS.map((item, index) => (
+            {CATALOG_ITEMS.map((item) => (
               <div
                 key={item.id}
-                className="carousel-item-snap w-[80vw] max-w-[310px] sm:w-[45%] lg:w-[calc(25%-18px)] flex flex-col relative aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-neutral-900 group select-none transition-all duration-300 hover:border-white/40"
+                className="carousel-item-snap w-[80vw] max-w-[310px] sm:w-[45%] lg:w-[calc(25%-18px)] flex flex-col relative aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#222020] group select-none transition-all duration-300 hover:border-[#E7192D]/60 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(0,0,0,0.85)]"
               >
-                {/* 1. Imagem Inteira sem corte de layout */}
-                <div className="absolute inset-0 w-full h-full bg-neutral-900 overflow-hidden">
+                {/* 1. Imagem Inteira clicável para ampliação */}
+                <div 
+                  onClick={() => setFullscreenItem(item)}
+                  className="absolute inset-0 w-full h-full bg-[#171313] overflow-hidden cursor-pointer"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setFullscreenItem(item);
+                    }
+                  }}
+                  aria-label={`Ver imagem de ${item.title} em tela cheia`}
+                  title="Clique para ampliar"
+                >
                   <ImageWithFallback
                     src={item.image}
                     fallbackSrc={getFallbackSrc(item.id)}
@@ -157,22 +194,40 @@ export const ProductsSection: React.FC = () => {
                   />
                 </div>
 
-                {/* 2. Moldura e Gradientes para Máxima Legibilidade da Imagem */}
+                {/* 2. Top Badges: Categoria e Botão Ampliar */}
+                <div className="absolute top-3 inset-x-3 z-20 flex items-center justify-between pointer-events-none">
+                  <span className="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[10px] sm:text-[11px] font-semibold text-white/90 uppercase tracking-wider shadow-sm">
+                    {item.category}
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setFullscreenItem(item);
+                    }}
+                    className="pointer-events-auto px-2.5 py-1 rounded-full bg-black/60 hover:bg-black/85 backdrop-blur-md border border-white/20 text-[11px] font-medium text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1.5 shadow-sm cursor-pointer"
+                    aria-label={`Ampliar ${item.title}`}
+                    title="Ampliar imagem"
+                  >
+                    <i className="fa-solid fa-expand text-[10px]" aria-hidden="true"></i>
+                    <span>Ampliar</span>
+                  </button>
+                </div>
+
+                {/* 3. Gradiente para Legibilidade da Ação Inferior */}
                 <div 
-                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 via-35% to-transparent pointer-events-none"
+                  className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 via-40% to-transparent pointer-events-none"
                   aria-hidden="true"
                 />
 
-
-
                 {/* 4. Ação "Consultar" Moderna Sobreposta Sobre a Imagem */}
                 <div className="relative mt-auto p-3.5 sm:p-4 z-20 flex flex-col justify-end">
-                  {/* Ação "Consultar" com Visual Moderno de Alto Contraste */}
                   <a
                     href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=${encodeURIComponent(item.whatsappMessage)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between w-full bg-white/95 hover:bg-[#D7192D] text-[#1A1A1A] hover:text-white font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl transition-all duration-300 shadow-xl backdrop-blur-md border border-white/40 group/btn"
+                    className="inline-flex items-center justify-between w-full bg-white/95 hover:bg-[#E7192D] text-[#171313] hover:text-white font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl transition-all duration-300 shadow-xl backdrop-blur-md border border-white/40 group/btn"
                   >
                     <span className="flex items-center gap-2">
                       <i className="fa-brands fa-whatsapp text-sm text-[#25D366] group-hover/btn:text-white transition-colors" aria-hidden="true"></i>
@@ -194,7 +249,7 @@ export const ProductsSection: React.FC = () => {
               type="button"
               onClick={scrollPrev}
               aria-label="Voltar produto"
-              className="w-10 h-10 rounded-full bg-white/10 active:bg-white/30 text-white flex items-center justify-center border border-white/25 backdrop-blur-md shadow-md"
+              className="w-10 h-10 rounded-full bg-white/10 active:bg-white/30 text-white flex items-center justify-center border border-white/25 backdrop-blur-md shadow-md cursor-pointer"
             >
               <i className="fa-solid fa-chevron-left text-xs" aria-hidden="true"></i>
             </button>
@@ -217,7 +272,7 @@ export const ProductsSection: React.FC = () => {
               type="button"
               onClick={scrollNext}
               aria-label="Avançar produto"
-              className="w-10 h-10 rounded-full bg-white/10 active:bg-white/30 text-white flex items-center justify-center border border-white/25 backdrop-blur-md shadow-md"
+              className="w-10 h-10 rounded-full bg-white/10 active:bg-white/30 text-white flex items-center justify-center border border-white/25 backdrop-blur-md shadow-md cursor-pointer"
             >
               <i className="fa-solid fa-chevron-right text-xs" aria-hidden="true"></i>
             </button>
@@ -230,13 +285,78 @@ export const ProductsSection: React.FC = () => {
             href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20a%20disponibilidade%20de%20produtos%20na%20J%27Cell.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-white text-[#D7192D] hover:bg-neutral-100 font-medium text-xs sm:text-sm px-5 py-2.5 sm:px-6 sm:py-2.5 rounded-full transition-all duration-200 shadow-lg text-decoration-none active:scale-95"
+            className="inline-flex items-center justify-center gap-2.5 bg-white text-[#D7192D] hover:bg-neutral-100 font-bold text-sm sm:text-base px-7 py-3.5 min-h-[48px] rounded-full transition-all duration-200 shadow-xl text-decoration-none hover:shadow-2xl hover:scale-[1.02] active:scale-95"
           >
-            <i className="fa-brands fa-whatsapp text-base sm:text-lg text-[#D7192D]" aria-hidden="true"></i>
-            <span>Consultar disponibilidade</span>
+            <i className="fa-brands fa-whatsapp text-lg sm:text-xl text-[#D7192D]" aria-hidden="true"></i>
+            <span>Consultar disponibilidade geral</span>
           </a>
         </div>
       </div>
+
+      {/* MODAL TELA CHEIA PARA O PRODUTO SELECIONADO (z-[9999]) */}
+      {fullscreenItem && (
+        <div 
+          className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-3 sm:p-6 animate-fadeIn"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Imagem de ${fullscreenItem.title} em tela cheia`}
+          onClick={() => setFullscreenItem(null)}
+        >
+          {/* Barra Superior do Modal */}
+          <div 
+            className="w-full max-w-4xl flex items-center justify-between py-3 px-2 text-white"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#D7192D]" aria-hidden="true"></span>
+              <span className="text-xs sm:text-sm font-semibold tracking-wide uppercase text-neutral-200">
+                {fullscreenItem.title} — J'Cell
+              </span>
+            </div>
+
+            <button
+              onClick={() => setFullscreenItem(null)}
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-[#D7192D] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#D7192D] cursor-pointer"
+              aria-label="Fechar modo tela cheia"
+              title="Fechar (Esc)"
+            >
+              <i className="fa-solid fa-xmark text-lg sm:text-xl w-6 h-6 flex items-center justify-center" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          {/* Imagem do Produto em Destaque Centralizada */}
+          <div 
+            className="relative flex items-center justify-center max-h-[76vh] max-w-[92vw] overflow-hidden rounded-2xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={fullscreenItem.image} 
+              alt={`${fullscreenItem.title} em tela cheia`}
+              className="max-h-[76vh] max-w-[92vw] w-auto h-auto object-contain rounded-2xl shadow-2xl"
+            />
+          </div>
+
+          {/* Rodapé do Modal com Ação e Dica de Teclado */}
+          <div 
+            className="flex flex-col sm:flex-row items-center justify-between w-full max-w-4xl pt-3 px-2 gap-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="text-xs text-white/60">
+              Pressione <kbd className="px-1.5 py-0.5 rounded bg-white/15 text-white font-mono text-[11px] border border-white/20">ESC</kbd> para fechar
+            </span>
+
+            <a
+              href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=${encodeURIComponent(fullscreenItem.whatsappMessage)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-xs sm:text-sm transition-all shadow-md active:scale-95"
+            >
+              <i className="fa-brands fa-whatsapp text-base" aria-hidden="true"></i>
+              <span>Consultar este produto no WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

@@ -28,16 +28,16 @@ export const FilmSection: React.FC = () => {
 
   const renderMachineImage = () => (
     <div className="relative group max-w-xl mx-auto lg:max-w-none">
-      {/* Efeito Glow / Aura Premium de Fundo */}
+      {/* Efeito Glow / Aura Sutil e Delicada sem halos excessivos */}
       <div 
-        className="absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#D7192D]/40 via-white/20 to-[#D7192D]/40 opacity-70 blur-xl group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
+        className="absolute -inset-1 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#D7192D]/25 via-white/10 to-[#D7192D]/20 opacity-45 blur-lg group-hover:opacity-75 transition-opacity duration-500 pointer-events-none" 
         aria-hidden="true"
       />
 
       {/* Imagem com extremidades arredondadas, flutuação e sombras (sem molduras pretas) */}
       <div 
         onClick={() => setIsFullscreen(true)}
-        className="relative cursor-pointer rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] transition-all duration-500 animate-float-frame hover:-translate-y-2 hover:shadow-[0_35px_70px_-15px_rgba(0,0,0,0.8)]"
+        className="relative cursor-pointer rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_-10px_rgba(0,0,0,0.7)] transition-all duration-500 animate-float-frame hover:-translate-y-2 hover:shadow-[0_30px_60px_-10px_rgba(0,0,0,0.85)] group border border-white/10"
         role="button"
         tabIndex={0}
         onKeyDown={(e) => {
@@ -58,25 +58,53 @@ export const FilmSection: React.FC = () => {
           decoding="async"
           fallbackLabel="Máquina de Hidrogel"
         />
+
+        {/* Dica discreta de clique para ampliar */}
+        <div className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5">
+          <i className="fa-solid fa-expand text-[10px]" aria-hidden="true"></i>
+          <span>Ampliar</span>
+        </div>
       </div>
 
       {/* Sombra de Projeção Flutuante */}
       <div 
-        className="w-[85%] mx-auto h-5 mt-2 rounded-full bg-black/40 blur-xl animate-float-shadow pointer-events-none" 
+        className="w-[85%] mx-auto h-5 mt-2 rounded-full bg-black/35 blur-xl animate-float-shadow pointer-events-none" 
         aria-hidden="true" 
       />
     </div>
   );
 
   return (
-    <section id="pelicula" className="py-10 sm:py-16 lg:py-24 bg-transparent text-white relative">
+    <section 
+      id="pelicula" 
+      className="pt-10 sm:pt-14 lg:pt-18 pb-12 sm:pb-16 lg:pb-20 relative text-white overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #760816 0%, #850A19 25%, #A30D20 50%, #850A19 75%, #760816 100%)'
+      }}
+    >
+      {/* Iluminação ambiente vibrante direcionada valorizando a máquina de hidrogel e os diferenciais */}
+      <div 
+        className="absolute inset-0 pointer-events-none select-none z-0"
+        style={{
+          background: 'radial-gradient(ellipse at 65% 45%, rgba(231, 25, 45, 0.40) 0%, rgba(200, 16, 36, 0.14) 50%, transparent 72%)'
+        }}
+        aria-hidden="true"
+      />
+      <div 
+        className="absolute inset-0 pointer-events-none select-none z-0"
+        style={{
+          background: 'radial-gradient(circle at 20% 60%, rgba(231, 25, 45, 0.25) 0%, transparent 60%)'
+        }}
+        aria-hidden="true"
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Conteúdo e Benefícios - À esquerda no desktop (order-1) */}
           <div className="lg:col-span-6 order-1 space-y-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-medium text-white mb-3">
-                <i className="fa-solid fa-shield-halved text-[#D7192D] text-xs"></i>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-semibold text-white mb-3">
+                <i className="fa-solid fa-shield-halved text-[#E7192D] text-xs"></i>
                 <span>Proteção Máxima para Telas</span>
               </div>
 
@@ -85,67 +113,73 @@ export const FilmSection: React.FC = () => {
                 {renderMachineImage()}
               </div>
               
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight text-white leading-tight">
-                Aplicação de Película <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/70">sob Medida</span>
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight text-white leading-tight">
+                Aplicação de Película de Hidrogel <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/70">Sob Medida</span>
               </h2>
 
-              <p className="text-sm sm:text-base text-white/85 mt-3 max-w-prose leading-relaxed">
-                Película de hidrogel de última geração, cortada milimetricamente para o modelo exato do seu aparelho, garantindo proteção completa com máxima nitidez.
+              <p className="text-sm sm:text-base text-[#D2CACC] mt-3 max-w-prose leading-relaxed">
+                Proteção personalizada para celulares, tablets, smartwatches e telas automotivas. Com corte de alta precisão, a JCell oferece soluções sob medida para diversos dispositivos.
               </p>
             </div>
 
-            {/* Grid de Destaques Premium */}
+            {/* Grid de Destaques Premium em cards escuros #222020 */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/15 backdrop-blur-md">
-                <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center text-white mb-2 shadow-inner">
-                  <i className="fa-solid fa-mobile-screen text-sm text-[#D7192D]"></i>
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-[#222020]/60 border border-white/20 backdrop-blur-md flex flex-col justify-between">
+                <div>
+                  <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center text-white mb-2 shadow-inner">
+                    <i className="fa-solid fa-mobile-screen text-sm text-[#E7192D]"></i>
+                  </div>
+                  <div className="font-bold text-white text-xs sm:text-sm">Multidispositivos</div>
                 </div>
-                <div className="font-bold text-white text-xs sm:text-sm">Multidispositivos</div>
-                <div className="text-[11px] text-white/70 mt-0.5">Celulares, smartwatches e tablets</div>
+                <div className="text-[11px] text-[#D2CACC] mt-1">Celulares, smartwatches e tablets</div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/15 backdrop-blur-md">
-                <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center text-white mb-2 shadow-inner">
-                  <i className="fa-solid fa-bolt text-sm text-[#D7192D]"></i>
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-[#222020]/60 border border-white/20 backdrop-blur-md flex flex-col justify-between">
+                <div>
+                  <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center text-white mb-2 shadow-inner">
+                    <i className="fa-solid fa-bolt text-sm text-[#E7192D]"></i>
+                  </div>
+                  <div className="font-bold text-white text-xs sm:text-sm">Feita na Hora</div>
                 </div>
-                <div className="font-bold text-white text-xs sm:text-sm">Feita na Hora</div>
-                <div className="text-[11px] text-white/70 mt-0.5">Corte e aplicação em poucos minutos</div>
+                <div className="text-[11px] text-[#D2CACC] mt-1">Corte e aplicação em poucos minutos</div>
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/15 backdrop-blur-md">
-                <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center text-white mb-2 shadow-inner">
-                  <i className="fa-solid fa-fingerprint text-sm text-[#D7192D]"></i>
+              <div className="p-3.5 sm:p-4 rounded-2xl bg-[#222020]/60 border border-white/20 backdrop-blur-md flex flex-col justify-between">
+                <div>
+                  <div className="w-8 h-8 rounded-xl bg-white/10 flex items-center justify-center text-white mb-2 shadow-inner">
+                    <i className="fa-solid fa-fingerprint text-sm text-[#E7192D]"></i>
+                  </div>
+                  <div className="font-bold text-white text-xs sm:text-sm">Toque Preciso</div>
                 </div>
-                <div className="font-bold text-white text-xs sm:text-sm">Toque Preciso</div>
-                <div className="text-[11px] text-white/70 mt-0.5">Preserva 100% a sensibilidade</div>
+                <div className="text-[11px] text-[#D2CACC] mt-1">Preserva 100% a sensibilidade</div>
               </div>
             </div>
 
             {/* Lista detalhada */}
             <ul className="space-y-3 text-sm text-white/90 pt-1">
               <li className="flex items-start gap-3">
-                <span className="w-5 h-5 rounded-full bg-white text-[#D7192D] flex items-center justify-center shrink-0 mt-0.5 shadow-sm" aria-hidden="true">
+                <span className="w-5 h-5 rounded-full bg-white text-[#E7192D] flex items-center justify-center shrink-0 mt-0.5 shadow-sm" aria-hidden="true">
                   <i className="fa-solid fa-check text-[11px]"></i>
                 </span>
                 <span>Absorve impactos e não trinca como o vidro tradicional.</span>
               </li>
 
               <li className="flex items-start gap-3">
-                <span className="w-5 h-5 rounded-full bg-white text-[#D7192D] flex items-center justify-center shrink-0 mt-0.5 shadow-sm" aria-hidden="true">
+                <span className="w-5 h-5 rounded-full bg-white text-[#E7192D] flex items-center justify-center shrink-0 mt-0.5 shadow-sm" aria-hidden="true">
                   <i className="fa-solid fa-check text-[11px]"></i>
                 </span>
                 <span>Encaixe perfeito até mesmo em telas curvas e bordas infinitas.</span>
               </li>
             </ul>
 
-            <div className="pt-3">
+            <div className="pt-2">
               <a
                 href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Gostaria%20de%20colocar%20uma%20pel%C3%ADcula%20de%20hidrogel%20na%20J%27Cell.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-white text-[#D7192D] hover:bg-neutral-100 font-bold text-sm sm:text-base px-8 py-3.5 min-h-[48px] rounded-full transition-all duration-300 shadow-xl hover:shadow-[0_10px_30px_rgba(255,255,255,0.3)] hover:scale-[1.02]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white text-[#E7192D] hover:bg-neutral-100 font-bold text-sm sm:text-base px-8 py-3.5 min-h-[48px] rounded-full transition-all duration-300 shadow-xl hover:shadow-[0_10px_30px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-98"
               >
-                <i className="fa-brands fa-whatsapp text-xl text-[#D7192D]" aria-hidden="true"></i>
+                <i className="fa-brands fa-whatsapp text-xl text-[#E7192D]" aria-hidden="true"></i>
                 <span>Aplicar película na loja</span>
               </a>
             </div>

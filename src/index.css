@@ -3,9 +3,13 @@
 @layer base {
   :root {
     --header-h: 64px;
-    --brand-red: #D7192D;
-    --brand-dark: #B71525;
-    --brand-black: #1A1A1A;
+    --brand-red: #E7192D;
+    --brand-red-trans: #C81024;
+    --brand-red-deep: #850A19;
+    --brand-graphite: #171313;
+    --brand-card-dark: #222020;
+    --brand-text-sec: #D2CACC;
+    --brand-black: #171313;
     --brand-gray: #F5F5F5;
     --brand-whatsapp: #25D366;
   }
@@ -18,7 +22,7 @@
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: #FFFFFF;
-    background-color: #D7192D;
+    background-color: #850A19;
     overflow-x: hidden;
     line-height: 1.5;
   }
@@ -31,7 +35,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid #D7192D;
+    outline: 2px solid #E7192D;
     outline-offset: 2px;
   }
 }
@@ -107,14 +111,14 @@
 
 .premium-card-dark {
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background-color: #222222;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #222020;
   transition: transform 200ms ease, border-color 200ms ease;
 }
 
 .premium-card-dark:hover {
   transform: translateY(-2px);
-  border-color: rgba(215, 25, 45, 0.5);
+  border-color: rgba(231, 25, 45, 0.5);
 }
 
 /* Micro animations respecting reduced motion */
@@ -162,5 +166,77 @@
   50% {
     transform: scale(1.06);
     opacity: 0.75;
+  }
+}
+
+/* Animações de Iluminação Ambiente e Ondas Vermelhas Suaves */
+@keyframes ambientDrift1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  33% {
+    transform: translate(5vw, 4vh) scale(1.12);
+    opacity: 0.88;
+  }
+  66% {
+    transform: translate(-3vw, 7vh) scale(0.96);
+    opacity: 0.72;
+  }
+}
+
+@keyframes ambientDrift2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translate(-6vw, -4vh) scale(1.15);
+    opacity: 0.85;
+  }
+  80% {
+    transform: translate(4vw, 5vh) scale(1.04);
+    opacity: 0.65;
+  }
+}
+
+@keyframes ambientDrift3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(6vw, -5vh) scale(1.14);
+    opacity: 0.8;
+  }
+}
+
+@keyframes wavePulse {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-24px) scaleY(1.06);
+    opacity: 0.62;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animate-ambient-1 {
+    animation: ambientDrift1 22s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .animate-ambient-2 {
+    animation: ambientDrift2 26s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .animate-ambient-3 {
+    animation: ambientDrift3 20s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .animate-wave-pulse {
+    animation: wavePulse 18s ease-in-out infinite;
+    will-change: transform, opacity;
   }
 }

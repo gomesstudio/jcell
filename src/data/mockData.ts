@@ -15,7 +15,7 @@ export const STORE_INFO = {
   name: "J'Cell Acessórios e Variedades",
   shortName: "J'Cell",
   descriptor: "ACESSÓRIOS E VARIEDADES",
-  address: "Rua Caxambu, nº 396, Loja, Centro, Nanuque - MG, CEP 39860-000",
+  address: "Rua Caxambu, nº 396 (Calçadão), Loja, Centro, Nanuque - MG, CEP 39860-000",
   cityState: "Nanuque - MG",
   phoneStore: "(33) 98848-6145",
   phoneStoreRaw: "5533988486145",
@@ -122,33 +122,33 @@ export interface WorkshopService {
 
 export const WORKSHOP_SERVICES: WorkshopService[] = [
   {
-    icon: "fa-mobile-screen-button",
+    icon: "fa-mobile-screen",
     title: "Troca de Tela",
-    description: "Substituição do display com cuidado e teste de toque.",
+    description: "Substituição de display com qualidade e segurança.",
   },
   {
-    icon: "fa-bolt-lightning",
+    icon: "fa-battery-full",
     title: "Troca de Bateria",
-    description: "Troca rápida para restabelecer a carga do seu aparelho.",
+    description: "Mais autonomia para o seu dispositivo.",
   },
   {
-    icon: "fa-plug-circle-bolt",
+    icon: "fa-plug",
     title: "Reparo de Conector",
-    description: "Reparo de entradas com mau contato ou falha de carregamento.",
+    description: "Reparo de entrada com mais certeza no carregamento.",
   },
   {
     icon: "fa-code",
     title: "Problemas de Software",
-    description: "Correção de travamentos, reinicializações e restauração do sistema.",
+    description: "Correção de travamentos, reinicialização e atualizações.",
   },
   {
     icon: "fa-shield-halved",
     title: "Aplicação de Hidrogel",
-    description: "Aplicação profissional sob medida para telas frontais e traseiras.",
+    description: "Proteção extra para a tela, com alta resistência.",
   },
   {
-    icon: "fa-pump-medical",
+    icon: "fa-gear",
     title: "Limpeza e Manutenção",
-    description: "Higienização interna, desoxidação e revisão preventiva de componentes.",
+    description: "Mais desempenho e vida útil para o seu aparelho.",
   },
 ];

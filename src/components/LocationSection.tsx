@@ -22,31 +22,54 @@ export const LocationSection: React.FC = () => {
   };
 
   return (
-    <section id="localizacao" className="py-12 sm:py-20 lg:py-24 bg-transparent text-white relative">
+    <section 
+      id="localizacao" 
+      className="pt-12 sm:pt-16 lg:pt-20 pb-14 sm:pb-20 lg:pb-24 text-white relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #760816 0%, #850A19 35%, #660813 75%, #42050C 100%)'
+      }}
+    >
+      {/* Luz ambiente escarlate vibrante */}
+      <div 
+        className="absolute inset-0 pointer-events-none select-none z-0"
+        style={{
+          background: 'radial-gradient(circle at 75% 40%, rgba(231, 25, 45, 0.32) 0%, transparent 68%)'
+        }}
+        aria-hidden="true"
+      />
+      <div 
+        className="absolute inset-0 pointer-events-none select-none z-0"
+        style={{
+          background: 'radial-gradient(circle at 20% 70%, rgba(231, 25, 45, 0.22) 0%, transparent 60%)'
+        }}
+        aria-hidden="true"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center">
+        
+        {/* Rótulo Centralizado no Topo da Seção com cor branca */}
+        <div className="text-center mb-6 sm:mb-8 lg:mb-10">
+          <span className="inline-block text-white font-bold text-xs sm:text-[13px] tracking-[0.25em] uppercase font-heading">
+            ONDE ESTAMOS
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 xl:gap-20 items-center">
           
           {/* COLUNA ESQUERDA: Textos Institucionais & Card de Endereço Oficial */}
-          <div className="lg:col-span-5 space-y-5 sm:space-y-6">
+          <div className="lg:col-span-5 space-y-7 sm:space-y-9 lg:space-y-10">
             
-            {/* Eyebrow / Tag */}
-            <span className="inline-block text-[#D7192D] font-bold text-xs sm:text-[13px] tracking-[0.2em] uppercase font-heading">
-              ONDE ESTAMOS
-            </span>
-
             {/* Título Principal em 2 Linhas Marcantes */}
-            <h2 className="font-heading font-black text-3xl xs:text-4xl sm:text-5xl lg:text-[44px] xl:text-5xl tracking-tight text-white uppercase leading-[1.08] m-0">
+            <h2 className="font-heading font-black text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] xl:text-5xl tracking-tight text-white uppercase leading-[1.08] m-0">
               LOCALIZAÇÃO<br />PRIVILEGIADA
             </h2>
 
-
-            {/* Card de Endereço Oficial com Estética Dark */}
-            <div className="rounded-2xl bg-[#121214]/95 border border-white/10 p-5 sm:p-6 shadow-2xl backdrop-blur-md">
+            {/* Card de Endereço Oficial em card escuro #222020 */}
+            <div className="rounded-2xl bg-[#222020]/80 border border-white/20 p-5 sm:p-6 shadow-2xl backdrop-blur-md !mt-10 sm:!mt-12 lg:!mt-14">
               <div className="flex items-start gap-3.5 sm:gap-4">
                 
                 {/* Ícone de Pino com Badge Escuro e Borda em Vermelho */}
                 <div 
-                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-neutral-900 border border-[#D7192D]/40 flex items-center justify-center shrink-0 text-[#D7192D] shadow-inner"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#171313] border border-[#E7192D]/50 flex items-center justify-center shrink-0 text-[#E7192D] shadow-inner"
                   aria-hidden="true"
                 >
                   <i className="fa-solid fa-location-dot text-base sm:text-lg"></i>
@@ -57,11 +80,11 @@ export const LocationSection: React.FC = () => {
                   <h3 className="font-heading font-bold text-xs sm:text-sm tracking-wider uppercase text-white m-0">
                     ENDEREÇO OFICIAL
                   </h3>
-                  <p className="text-sm sm:text-[15px] font-medium text-neutral-200 leading-snug m-0">
-                    Rua Caxambu, nº 396 — Centro
+                  <p className="text-sm sm:text-[15px] font-medium text-white leading-snug m-0">
+                    Rua Caxambu, nº 396 (Calçadão) — Centro
                   </p>
-                  <p className="text-xs sm:text-sm text-neutral-400 leading-snug m-0">
-                    Próximo aos principais comércios • Nanuque - MG • CEP 39860-000
+                  <p className="text-xs sm:text-sm text-[#D2CACC] leading-snug m-0">
+                    Nanuque - MG • CEP 39860-000
                   </p>
 
                   {/* Ação Interativa: Copiar Endereço Completo */}
@@ -69,7 +92,7 @@ export const LocationSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={handleCopyAddress}
-                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#D7192D] hover:text-[#ff3b4f] transition-colors cursor-pointer group focus:outline-none"
+                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#E7192D] hover:text-white transition-colors cursor-pointer group focus:outline-none"
                     >
                       <i 
                         className={`${copied ? 'fa-solid fa-check text-green-400' : 'fa-regular fa-copy'} text-sm transition-transform group-hover:scale-110`} 
@@ -87,7 +110,7 @@ export const LocationSection: React.FC = () => {
 
           {/* COLUNA DIREITA: Card Visual com Mapa Dark Suave, Logo Flutuante com Glow e Botão "COMO CHEGAR" */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl sm:rounded-3xl border border-white/15 overflow-hidden relative min-h-[340px] xs:min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex flex-col items-center justify-center text-center p-6 sm:p-10 shadow-2xl bg-[#141416] group">
+            <div className="rounded-2xl sm:rounded-3xl border border-white/20 overflow-hidden relative min-h-[340px] xs:min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex flex-col items-center justify-center text-center p-6 sm:p-10 shadow-2xl bg-[#222020] group">
               
               {/* Foto de Fundo do Mapa com Tratamento Equilibrado (Menos Escuro) */}
               <div 
@@ -117,7 +140,7 @@ export const LocationSection: React.FC = () => {
                 <div className="relative mb-6 flex items-center justify-center">
                   {/* Aura Luminosa de Destaque */}
                   <div 
-                    className="absolute -inset-4 bg-[#D7192D]/40 rounded-full blur-2xl animate-pulse pointer-events-none"
+                    className="absolute -inset-4 bg-[#E7192D]/40 rounded-full blur-2xl animate-pulse pointer-events-none"
                     aria-hidden="true"
                   />
                   
@@ -136,10 +159,10 @@ export const LocationSection: React.FC = () => {
                   href={STORE_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full border border-[#D7192D] bg-[#D7192D]/15 hover:bg-[#D7192D] text-white font-bold text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-[0_0_20px_rgba(215,25,45,0.35)] hover:shadow-[0_0_35px_rgba(215,25,45,0.7)] group/btn transform hover:-translate-y-0.5 text-decoration-none"
+                  className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-3.5 min-h-[46px] rounded-full border border-[#E7192D] bg-[#E7192D]/20 hover:bg-[#E7192D] text-white font-bold text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-[0_0_20px_rgba(231,25,45,0.4)] hover:shadow-[0_0_35px_rgba(231,25,45,0.7)] group/btn transform hover:-translate-y-0.5 active:scale-98 text-decoration-none"
                 >
                   <i 
-                    className="fa-solid fa-location-dot text-[#D7192D] group-hover/btn:text-white text-sm transition-colors" 
+                    className="fa-solid fa-location-dot text-[#E7192D] group-hover/btn:text-white text-sm transition-colors" 
                     aria-hidden="true"
                   />
                   <span>COMO CHEGAR</span>

@@ -17,60 +17,65 @@ import { WhatsAppFloating } from './components/WhatsAppFloating';
 
 export default function App() {
   return (
-    <div className="min-h-screen text-white flex flex-col font-sans selection:bg-white selection:text-[#D7192D] relative bg-[#170205] overflow-x-hidden">
+    <div className="min-h-screen text-white flex flex-col font-sans selection:bg-white selection:text-[#E7192D] relative bg-[#850A19] overflow-x-hidden">
       {/* 
-        CANVAS DE CONTINUIDADE INFINITA & EFEITO PREMIUM GLOBAL:
-        Fundo único contínuo com a paleta oficial da Hero em degradê aveludado profundo,
-        com pontos de luz atmosféricos (ambient spotlights) e vinheta periférica,
-        garantindo uma experiência fluida sem cortes, linhas ou demarcações entre as seções.
+        SISTEMA DE FUNDO VERMELHO PREMIUM J'CELL COM ILUMINAÇÃO AMBIENTE ANIMADA:
+        Base viva e contínua com Vermelho Principal (#E7192D), Vermelho de Transição (#C81024)
+        e Vermelho Profundo (#850A19), mantendo o vermelho visualmente dominante e sofisticado.
       */}
       <div 
         className="fixed inset-0 pointer-events-none select-none z-0 overflow-hidden"
         aria-hidden="true"
       >
-        {/* Camada 1: Gradiente base contínuo infinito (Vermelho e Carmim da Marca) */}
+        {/* Base contínua em gradiente vermelho vivo e elegante */}
         <div 
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0"
           style={{
-            background: 'linear-gradient(180deg, #D7192D 0%, #BA1425 18%, #9C0F1D 40%, #850B17 60%, #9C0F1D 80%, #B71525 93%, #D7192D 100%)'
+            background: 'linear-gradient(180deg, #E7192D 0%, #C81024 16%, #A30D20 38%, #850A19 65%, #6E0815 85%, #171313 100%)'
           }}
         />
 
-        {/* Camada 2: Luzes radiais atmosféricas (Ambient Spotlights) para profundidade 3D */}
+        {/* Onda luminosa difusa com pulsação suave em estúdio */}
         <div 
-          className="absolute top-[-10%] left-[-15%] w-[70vw] h-[70vw] max-w-[900px] max-h-[900px] rounded-full"
+          className="absolute inset-0 animate-wave-pulse opacity-70"
           style={{
-            background: 'radial-gradient(circle, rgba(255, 80, 100, 0.24) 0%, rgba(215, 25, 45, 0.12) 40%, transparent 70%)',
-            filter: 'blur(70px)',
-          }}
-        />
-        <div 
-          className="absolute top-[25%] right-[-15%] w-[65vw] h-[65vw] max-w-[850px] max-h-[850px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(255, 95, 115, 0.20) 0%, rgba(183, 21, 37, 0.08) 45%, transparent 70%)',
-            filter: 'blur(80px)',
-          }}
-        />
-        <div 
-          className="absolute top-[55%] left-[-10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(255, 85, 105, 0.18) 0%, rgba(160, 17, 31, 0.07) 45%, transparent 70%)',
-            filter: 'blur(75px)',
-          }}
-        />
-        <div 
-          className="absolute top-[80%] right-[-10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(255, 75, 95, 0.22) 0%, rgba(215, 25, 45, 0.10) 40%, transparent 70%)',
-            filter: 'blur(70px)',
+            background: 'radial-gradient(ellipse at 50% 30%, rgba(231, 25, 45, 0.35) 0%, rgba(200, 16, 36, 0.15) 50%, transparent 75%)',
+            filter: 'blur(60px)'
           }}
         />
 
-        {/* Camada 3: Vinheta suave de profundidade editorial premium */}
+        {/* Ponto de luz escarlate 1 (Superior / Topo): Deslocamento suave contínuo */}
         <div 
-          className="absolute inset-0 w-full h-full"
+          className="absolute top-[-5%] right-[-5%] w-[60vw] h-[60vw] max-w-[850px] max-h-[850px] rounded-full animate-ambient-1"
           style={{
-            background: 'radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(10, 1, 2, 0.38) 100%)'
+            background: 'radial-gradient(circle, rgba(231, 25, 45, 0.45) 0%, rgba(200, 16, 36, 0.20) 45%, transparent 70%)',
+            filter: 'blur(95px)',
+          }}
+        />
+
+        {/* Ponto de luz escarlate 2 (Centro / Meio): Deslocamento suave contínuo */}
+        <div 
+          className="absolute top-[38%] left-[-10%] w-[55vw] h-[55vw] max-w-[800px] max-h-[800px] rounded-full animate-ambient-2"
+          style={{
+            background: 'radial-gradient(circle, rgba(240, 45, 65, 0.35) 0%, rgba(200, 16, 36, 0.16) 50%, transparent 72%)',
+            filter: 'blur(100px)',
+          }}
+        />
+
+        {/* Ponto de luz escarlate 3 (Inferior / Base): Deslocamento suave contínuo */}
+        <div 
+          className="absolute top-[70%] right-[-8%] w-[55vw] h-[55vw] max-w-[780px] max-h-[780px] rounded-full animate-ambient-3"
+          style={{
+            background: 'radial-gradient(circle, rgba(231, 25, 45, 0.32) 0%, rgba(133, 10, 25, 0.15) 50%, transparent 70%)',
+            filter: 'blur(95px)',
+          }}
+        />
+
+        {/* Vinheta periférica sutil para manter legibilidade sem escurecer o vermelho */}
+        <div 
+          className="absolute inset-0 bg-radial-vignette opacity-20"
+          style={{
+            background: 'radial-gradient(circle at 50% 50%, transparent 50%, rgba(23, 19, 19, 0.45) 100%)'
           }}
         />
       </div>

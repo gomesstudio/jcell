@@ -106,7 +106,7 @@ export const HeroSection: React.FC = () => {
         <div 
           className="absolute inset-0 hidden sm:block"
           style={{
-            background: 'linear-gradient(to right, #D7192D 0%, #D7192D 42%, rgba(215, 25, 45, 0.96) 50%, rgba(215, 25, 45, 0.82) 60%, rgba(215, 25, 45, 0.58) 72%, rgba(215, 25, 45, 0.28) 84%, rgba(215, 25, 45, 0.08) 94%, transparent 100%)'
+            background: 'linear-gradient(to right, #E7192D 0%, #E7192D 42%, rgba(231, 25, 45, 0.96) 50%, rgba(231, 25, 45, 0.82) 60%, rgba(231, 25, 45, 0.58) 72%, rgba(231, 25, 45, 0.28) 84%, rgba(231, 25, 45, 0.08) 94%, transparent 100%)'
           }}
         />
 
@@ -117,7 +117,7 @@ export const HeroSection: React.FC = () => {
         <div 
           className="absolute inset-0 sm:hidden"
           style={{
-            background: 'linear-gradient(to bottom, #D7192D 0%, #D7192D 50%, rgba(215, 25, 45, 0.92) 62%, rgba(215, 25, 45, 0.65) 78%, rgba(215, 25, 45, 0.3) 90%, transparent 100%)'
+            background: 'linear-gradient(to bottom, #E7192D 0%, #E7192D 50%, rgba(231, 25, 45, 0.92) 62%, rgba(231, 25, 45, 0.65) 78%, rgba(231, 25, 45, 0.3) 90%, transparent 100%)'
           }}
         />
 
@@ -125,29 +125,29 @@ export const HeroSection: React.FC = () => {
         <div 
           className="absolute inset-x-0 top-0 h-24 pointer-events-none"
           style={{
-            background: 'linear-gradient(to bottom, rgba(183, 21, 37, 0.4) 0%, rgba(215, 25, 45, 0.1) 60%, transparent 100%)'
+            background: 'linear-gradient(to bottom, rgba(200, 16, 36, 0.4) 0%, rgba(231, 25, 45, 0.1) 60%, transparent 100%)'
           }}
         />
 
-        {/* Realce luminoso suave e profundo focado na área da logo */}
+        {/* Realce luminoso suave e vivo focado na área da logo */}
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'radial-gradient(ellipse at 20% 40%, rgba(255, 65, 85, 0.22) 0%, rgba(215, 25, 45, 0) 65%)'
+            background: 'radial-gradient(ellipse at 20% 40%, rgba(255, 75, 95, 0.25) 0%, rgba(231, 25, 45, 0) 65%)'
           }}
         />
 
-        {/* Transição suave na base, posicionada no limite inferior exato da seção para acabamento perfeito */}
+        {/* Transição suave na base para a seção Quem Somos (#C81024) */}
         <div 
-          className="absolute inset-x-0 bottom-0 h-28 pointer-events-none"
+          className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
           style={{
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(215, 25, 45, 0.4) 50%, rgba(186, 20, 37, 0.92) 100%)'
+            background: 'linear-gradient(to bottom, transparent 0%, rgba(231, 25, 45, 0.35) 40%, rgba(200, 16, 36, 0.85) 80%, #C81024 100%)'
           }}
         />
       </div>
 
       {/* 3. CONTEÚDO PRINCIPAL (100% de opacidade e nitidez, adaptado para Mobile e Desktop) */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 lg:px-8 py-4 sm:py-16 md:py-20 lg:py-24 w-full flex-grow flex flex-col justify-center items-center sm:items-start">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 xs:px-5 sm:px-6 lg:px-8 py-8 sm:py-16 md:py-20 lg:py-24 w-full flex-grow flex flex-col justify-center items-center sm:items-start">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -155,12 +155,20 @@ export const HeroSection: React.FC = () => {
           className="max-w-xl md:max-w-2xl w-full flex flex-col items-center sm:items-start text-center sm:text-left mx-auto sm:mx-0"
         >
           {/* H1 Acessível para SEO e Leitores de Tela */}
-          <h1 className="sr-only">J'Cell Acessórios e Variedades - Nanuque - MG</h1>
+          <h1 className="sr-only">J&apos;Cell Acessórios e Variedades - Nanuque - MG</h1>
+
+          {/* Tag de Posicionamento / Valor da Marca */}
+          <motion.div variants={itemVariants} className="mb-4 sm:mb-5 flex justify-center sm:justify-start">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-xs sm:text-[13px] font-semibold text-white tracking-wide shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" aria-hidden="true" />
+              <span>Acessórios • Assistência Técnica • Películas em Nanuque</span>
+            </span>
+          </motion.div>
 
           {/* Logo Oficial J'Cell Nítida e Perfeitamente Sincronizada com os Botões */}
           <motion.div 
             variants={itemVariants}
-            className="w-full max-w-[280px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mb-6 sm:mb-8 will-change-transform flex justify-center sm:justify-start mx-auto sm:mx-0"
+            className="w-full max-w-[290px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mb-6 sm:mb-8 will-change-transform flex justify-center sm:justify-start mx-auto sm:mx-0"
           >
             <ImageWithFallback
               src={IMAGES.logoHero}
@@ -174,7 +182,7 @@ export const HeroSection: React.FC = () => {
           {/* Botões de Ação: Fale Conosco (WhatsApp) e Instagram pareados com o centro da logo */}
           <motion.div 
             variants={buttonVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full max-w-[280px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mx-auto sm:mx-0"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full max-w-[290px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mx-auto sm:mx-0"
           >
             <motion.a
               whileHover={{ scale: 1.025, y: -1 }}
@@ -183,9 +191,9 @@ export const HeroSection: React.FC = () => {
               href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Gostaria%20de%20um%20atendimento%20na%20J%27Cell.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto sm:min-w-[185px] inline-flex items-center justify-center gap-2.5 bg-white text-[#D7192D] hover:bg-neutral-100 font-semibold text-sm sm:text-[15px] px-6 py-2.5 sm:py-3 min-h-[44px] sm:min-h-[46px] rounded-full border-2 border-transparent transition-colors duration-200 shadow-md hover:shadow-lg text-decoration-none"
+              className="w-full sm:w-auto sm:min-w-[190px] inline-flex items-center justify-center gap-2.5 bg-white text-[#E7192D] hover:bg-neutral-100 font-bold text-sm sm:text-[15px] px-6 py-3 min-h-[48px] rounded-full transition-all duration-200 shadow-md hover:shadow-xl text-decoration-none active:scale-98"
             >
-              <i className="fa-brands fa-whatsapp text-lg text-[#D7192D]" aria-hidden="true"></i>
+              <i className="fa-brands fa-whatsapp text-lg text-[#E7192D]" aria-hidden="true"></i>
               <span>Fale Conosco</span>
             </motion.a>
 
@@ -196,7 +204,7 @@ export const HeroSection: React.FC = () => {
               href={STORE_INFO.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto sm:min-w-[185px] inline-flex items-center justify-center gap-2.5 bg-black/30 hover:bg-white/10 text-white border-2 border-white/90 font-semibold text-sm sm:text-[15px] px-6 py-2.5 sm:py-3 min-h-[44px] sm:min-h-[46px] rounded-full transition-colors duration-200 text-decoration-none backdrop-blur-sm shadow-sm hover:shadow-md"
+              className="w-full sm:w-auto sm:min-w-[190px] inline-flex items-center justify-center gap-2.5 bg-black/30 hover:bg-white/10 text-white border-2 border-white/90 font-bold text-sm sm:text-[15px] px-6 py-3 min-h-[48px] rounded-full transition-all duration-200 text-decoration-none backdrop-blur-sm shadow-sm hover:shadow-md active:scale-98"
             >
               <i className="fa-brands fa-instagram text-lg text-white" aria-hidden="true"></i>
               <span>Siga no Instagram</span>
