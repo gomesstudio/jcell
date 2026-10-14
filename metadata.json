@@ -1,0 +1,6 @@
+{
+  "name": "J'Cell Acessórios e Variedades",
+  "description": "Assistência técnica especializada para celulares e tablets, películas de hidrogel sob medida e a maior variedade de acessórios e eletrônicos em Nanuque - MG.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
