@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IMAGES } from '../data/mockData';
 import { ImageWithFallback } from './ImageWithFallback';
+import { ScrollReveal, ScrollRevealStagger, ScrollRevealItem } from './ScrollReveal';
 
 export const AboutSection: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -50,24 +51,14 @@ export const AboutSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Identificador e Título para Versão Mobile (mantém ordem natural e centralizada no celular) */}
-        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 lg:hidden">
-          <span className="inline-block text-white/95 font-bold text-xs sm:text-[13px] tracking-[0.2em] uppercase font-heading mb-2">
-            QUEM SOMOS
-          </span>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-heading font-extrabold text-white leading-tight tracking-tight m-0">
-            Mais de 20 anos ao seu lado!
-          </h2>
-        </div>
-
-        {/* ESTRUTURA HERO SPLIT NO DESKTOP: 50% LADO ESQUERDO IMAGEM | 50% LADO DIREITO TEXTOS */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-stretch">
+        {/* DUAS COLUNAS LADO A LADO NO DESKTOP (>= 768px) E EMPILHADO NO MOBILE (< 768px) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14 items-stretch">
           
-          {/* LADO ESQUERDO: Imagem da Fachada ocupando todo o lado esquerdo da seção */}
-          <div className="lg:col-span-6 w-full h-full flex flex-col">
+          {/* COLUNA ESQUERDA: A foto da fachada ocupa a coluna inteira, 100% de largura e altura */}
+          <ScrollReveal direction="up" distance={28} duration={0.8} className="w-full h-full flex flex-col">
             <div 
               onClick={() => setIsFullscreen(true)}
-              className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl w-full h-full min-h-[340px] sm:min-h-[420px] lg:min-h-[580px] xl:min-h-[620px] flex-1 group bg-[#222020] cursor-pointer transition-all duration-500 hover:border-white/40 hover:shadow-[0_25px_60px_rgba(0,0,0,0.7)] flex flex-col"
+              className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl w-full h-full min-h-[340px] xs:min-h-[400px] sm:min-h-[460px] md:min-h-full flex-1 group bg-[#222020] cursor-pointer transition-all duration-500 hover:border-white/40 hover:shadow-[0_25px_60px_rgba(0,0,0,0.7)]"
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
@@ -83,7 +74,7 @@ export const AboutSection: React.FC = () => {
                 src={IMAGES.fachada}
                 fallbackSrc={IMAGES.cdn.fachada}
                 alt="Fachada oficial da loja J'Cell Acessórios e Variedades em Nanuque - MG"
-                className="w-full h-full flex-1 object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full absolute inset-0 object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
                 decoding="async"
                 fallbackLabel="Fachada J'Cell Nanuque"
@@ -97,108 +88,126 @@ export const AboutSection: React.FC = () => {
 
               {/* Selos informativos elegantes na base */}
               <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-xs font-semibold text-white shadow-lg">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/25 text-xs font-semibold text-white shadow-lg">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#E7192D] animate-pulse"></span>
                   <span>Nossa Loja em Nanuque - MG</span>
                 </div>
-                <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-xs text-[#D2CACC] font-medium">
-                  <i className="fa-solid fa-map-pin text-[#E7192D] text-xs" aria-hidden="true"></i>
+                <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/25 text-xs text-white font-medium">
+                  <i className="fa-solid fa-map-pin text-[#FF5C6C] text-xs" aria-hidden="true"></i>
                   <span>Calçadão</span>
                 </div>
               </div>
 
               {/* Dica de clique para ampliar no hover */}
-              <div className="absolute top-4 right-4 z-10 px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none flex items-center gap-1.5 shadow-lg transform translate-y-1 group-hover:translate-y-0">
+              <div className="absolute top-4 right-4 z-10 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/25 text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none flex items-center gap-1.5 shadow-lg transform translate-y-1 group-hover:translate-y-0">
                 <i className="fa-solid fa-expand text-xs" aria-hidden="true"></i>
                 <span>Ampliar</span>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* LADO DIREITO: Todos os textos concentrados aqui no Desktop */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-6 sm:space-y-7 h-full py-1">
+          {/* COLUNA DIREITA: Todo o conteúdo de texto aqui, alinhado verticalmente ao centro */}
+          <div className="w-full flex flex-col justify-center space-y-6 sm:space-y-7 h-full py-1">
             
-            {/* Header da Seção integrado ao lado direito no Desktop */}
-            <div className="hidden lg:block space-y-2">
-              <span className="inline-block text-white/95 font-bold text-xs sm:text-[13px] tracking-[0.2em] uppercase font-heading">
+            {/* Identificador da Seção e Título Principal com Alto Contraste WCAG */}
+            <ScrollReveal direction="up" distance={20} duration={0.7} delay={0.05} className="space-y-2 text-center md:text-left">
+              <span className="inline-block text-white font-extrabold text-xs sm:text-[13px] tracking-[0.22em] uppercase font-heading drop-shadow-sm">
                 QUEM SOMOS
               </span>
-              <h2 className="text-3xl lg:text-4xl xl:text-[42px] font-heading font-extrabold text-white leading-tight tracking-tight m-0">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] font-heading font-extrabold text-white leading-tight tracking-tight m-0">
                 Mais de 20 anos ao seu lado!
               </h2>
-            </div>
+            </ScrollReveal>
 
             {/* Texto Institucional */}
-            <p className="text-base sm:text-[17px] text-white/95 leading-relaxed font-normal m-0 max-w-xl text-center sm:text-left mx-auto sm:mx-0">
-              A J&apos;Cell faz parte da história de Nanuque há mais de 20 anos! Tudo isso graças à confiança de cada cliente que passou por nossa loja e continua fazendo parte da nossa trajetória. Temos muito orgulho de oferecer, em um só lugar, tudo o que você precisa para o seu celular além de acessórios, eletrônicos e assistência técnica especializada para celulares e tablets.
-              <span className="block mt-4 sm:mt-5 text-white font-semibold">
-                J&apos;Cell uma história construída com você, todos os dias!
-              </span>
-            </p>
+            <ScrollReveal direction="up" distance={20} duration={0.7} delay={0.12}>
+              <p className="text-base sm:text-[17px] text-white leading-relaxed font-normal m-0 max-w-xl text-center md:text-left mx-auto md:mx-0">
+                A J&apos;Cell faz parte da história de Nanuque há mais de 20 anos! Tudo isso graças à confiança de cada cliente que passou por nossa loja e continua fazendo parte da nossa trajetória. Temos muito orgulho de oferecer, em um só lugar, tudo o que você precisa para o seu celular além de acessórios, eletrônicos e assistência técnica especializada para celulares e tablets.
+                <span className="block mt-4 sm:mt-5 text-white font-semibold">
+                  J&apos;Cell uma história construída com você, todos os dias!
+                </span>
+              </p>
+            </ScrollReveal>
 
-            {/* Citação em Destaque (Compromisso) */}
-            <blockquote className="relative rounded-2xl border border-white/20 bg-[#222020]/60 backdrop-blur-md px-5 py-4 text-white italic text-base sm:text-[17px] font-medium leading-relaxed shadow-sm !mt-4 sm:!mt-6 border-l-4 border-l-white">
-              “Mais do que vender produtos, queremos conquistar sua confiança e estar presentes no seu dia a dia!”
-            </blockquote>
+            {/* Citação em Destaque Editorial com Acabamento Refinado */}
+            <ScrollReveal direction="up" distance={20} duration={0.7} delay={0.18}>
+              <blockquote className="relative rounded-2xl border border-white/20 bg-[#222020]/85 backdrop-blur-md px-6 py-4.5 text-white italic text-base sm:text-[17px] font-medium leading-relaxed shadow-lg shadow-black/35">
+                <span className="text-xl font-serif text-[#FF5C6C] not-italic leading-none mr-2 font-black select-none" aria-hidden="true">“</span>
+                Mais do que vender produtos, queremos conquistar sua confiança e estar presentes no seu dia a dia!
+                <span className="text-xl font-serif text-[#FF5C6C] not-italic leading-none ml-1.5 font-black select-none" aria-hidden="true">”</span>
+              </blockquote>
+            </ScrollReveal>
 
-            {/* 3 Serviços Organizados em Cards Refinados */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3.5 pt-4 border-t border-white/20">
+            {/* 3 Serviços Organizados em Cards Refinados com Efeito Stagger Reveal */}
+            <ScrollRevealStagger staggerDelay={0.12} delayChildren={0.15} className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3.5 pt-4 border-t border-white/20">
               
               {/* Serviço 1: Acessórios */}
-              <div className="p-3.5 rounded-xl bg-[#222020]/50 border border-white/15 hover:border-white/30 transition-all duration-200">
-                <div className="flex items-center gap-2.5 text-white mb-1.5">
-                  <div 
-                    className="w-8 h-8 rounded-lg bg-[#E7192D]/20 border border-[#E7192D]/40 flex items-center justify-center shrink-0 shadow-sm"
-                    aria-hidden="true"
-                  >
-                    <i className="fa-solid fa-headphones text-xs sm:text-sm text-white"></i>
+              <ScrollRevealItem>
+                <div className="p-4 rounded-2xl bg-[#222020]/75 hover:bg-[#222020] border border-white/15 hover:border-white/35 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl shadow-black/30 h-full flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center gap-2.5 text-white mb-2">
+                      <div 
+                        className="w-9 h-9 rounded-xl bg-[#E7192D]/20 border border-[#E7192D]/40 flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-105"
+                        aria-hidden="true"
+                      >
+                        <i className="fa-solid fa-headphones text-xs sm:text-sm text-white"></i>
+                      </div>
+                      <h3 className="font-heading font-bold text-sm text-white m-0 tracking-tight">
+                        Acessórios
+                      </h3>
+                    </div>
+                    <p className="text-xs text-[#D2CACC] leading-relaxed m-0">
+                      Capinhas, cabos, fones, carregadores e muito mais.
+                    </p>
                   </div>
-                  <h3 className="font-heading font-bold text-sm text-white m-0">
-                    Acessórios
-                  </h3>
                 </div>
-                <p className="text-xs text-[#D2CACC] leading-relaxed m-0">
-                  Capinhas, cabos, fones, carregadores e muito mais.
-                </p>
-              </div>
+              </ScrollRevealItem>
 
               {/* Serviço 2: Assistência Técnica */}
-              <div className="p-3.5 rounded-xl bg-[#222020]/50 border border-white/15 hover:border-white/30 transition-all duration-200">
-                <div className="flex items-center gap-2.5 text-white mb-1.5">
-                  <div 
-                    className="w-8 h-8 rounded-lg bg-[#E7192D]/20 border border-[#E7192D]/40 flex items-center justify-center shrink-0 shadow-sm"
-                    aria-hidden="true"
-                  >
-                    <i className="fa-solid fa-screwdriver-wrench text-xs sm:text-sm text-white"></i>
+              <ScrollRevealItem>
+                <div className="p-4 rounded-2xl bg-[#222020]/75 hover:bg-[#222020] border border-white/15 hover:border-white/35 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl shadow-black/30 h-full flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center gap-2.5 text-white mb-2">
+                      <div 
+                        className="w-9 h-9 rounded-xl bg-[#E7192D]/20 border border-[#E7192D]/40 flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-105"
+                        aria-hidden="true"
+                      >
+                        <i className="fa-solid fa-screwdriver-wrench text-xs sm:text-sm text-white"></i>
+                      </div>
+                      <h3 className="font-heading font-bold text-sm text-white m-0 tracking-tight">
+                        Assistência técnica
+                      </h3>
+                    </div>
+                    <p className="text-xs text-[#D2CACC] leading-relaxed m-0">
+                      Diagnóstico e reparo de celulares e tablets.
+                    </p>
                   </div>
-                  <h3 className="font-heading font-bold text-sm text-white m-0">
-                    Assistência técnica
-                  </h3>
                 </div>
-                <p className="text-xs text-[#D2CACC] leading-relaxed m-0">
-                  Diagnóstico e reparo de celulares e tablets.
-                </p>
-              </div>
+              </ScrollRevealItem>
 
               {/* Serviço 3: Películas */}
-              <div className="p-3.5 rounded-xl bg-[#222020]/50 border border-white/15 hover:border-white/30 transition-all duration-200">
-                <div className="flex items-center gap-2.5 text-white mb-1.5">
-                  <div 
-                    className="w-8 h-8 rounded-lg bg-[#E7192D]/20 border border-[#E7192D]/40 flex items-center justify-center shrink-0 shadow-sm"
-                    aria-hidden="true"
-                  >
-                    <i className="fa-solid fa-shield-halved text-xs sm:text-sm text-white"></i>
+              <ScrollRevealItem>
+                <div className="p-4 rounded-2xl bg-[#222020]/75 hover:bg-[#222020] border border-white/15 hover:border-white/35 transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl shadow-black/30 h-full flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center gap-2.5 text-white mb-2">
+                      <div 
+                        className="w-9 h-9 rounded-xl bg-[#E7192D]/20 border border-[#E7192D]/40 flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-105"
+                        aria-hidden="true"
+                      >
+                        <i className="fa-solid fa-shield-halved text-xs sm:text-sm text-white"></i>
+                      </div>
+                      <h3 className="font-heading font-bold text-sm text-white m-0 tracking-tight">
+                        Películas
+                      </h3>
+                    </div>
+                    <p className="text-xs text-[#D2CACC] leading-relaxed m-0">
+                      Mais proteção para o seu dispositivo, com aplicação na loja.
+                    </p>
                   </div>
-                  <h3 className="font-heading font-bold text-sm text-white m-0">
-                    Películas
-                  </h3>
                 </div>
-                <p className="text-xs text-[#D2CACC] leading-relaxed m-0">
-                  Mais proteção para o seu dispositivo, com aplicação na loja.
-                </p>
-              </div>
+              </ScrollRevealItem>
 
-            </div>
+            </ScrollRevealStagger>
 
           </div>
 
@@ -229,7 +238,7 @@ export const AboutSection: React.FC = () => {
 
             <button
               onClick={() => setIsFullscreen(false)}
-              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-[#D7192D] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#D7192D] cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-[#C81024] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white cursor-pointer"
               aria-label="Fechar modo tela cheia"
               title="Fechar (Esc)"
             >

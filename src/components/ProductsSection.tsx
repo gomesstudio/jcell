@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { STORE_INFO, CATALOG_ITEMS, IMAGES, CatalogItem } from '../data/mockData';
 import { ImageWithFallback } from './ImageWithFallback';
+import { ScrollReveal } from './ScrollReveal';
 
 export const ProductsSection: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -97,7 +98,7 @@ export const ProductsSection: React.FC = () => {
   return (
     <section 
       id="produtos" 
-      className="pt-10 sm:pt-14 lg:pt-18 pb-12 sm:pb-16 lg:pb-20 relative text-white overflow-hidden"
+      className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 relative text-white overflow-hidden"
       style={{
         background: 'linear-gradient(180deg, #850A19 0%, #9E0D1F 30%, #850A19 70%, #760816 100%)'
       }}
@@ -119,8 +120,8 @@ export const ProductsSection: React.FC = () => {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* 1. Cabeçalho de Seção */}
-        <div className="mb-6 sm:mb-8 lg:mb-10">
+        {/* 1. Cabeçalho de Seção com Scroll Reveal */}
+        <ScrollReveal direction="up" distance={20} duration={0.7} className="mb-6 sm:mb-8 lg:mb-10">
           <div className="text-center sm:text-left max-w-xl">
             <span className="inline-block text-white/90 font-bold text-xs sm:text-[13px] tracking-[0.2em] uppercase font-heading mb-2">
               CATEGORIAS
@@ -128,14 +129,14 @@ export const ProductsSection: React.FC = () => {
             <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] font-heading font-extrabold text-white leading-tight tracking-tight m-0">
               Nossos Produtos
             </h2>
-            <p className="text-sm sm:text-base text-[#D2CACC] mt-2 leading-relaxed">
+            <p className="text-sm sm:text-base text-white/95 mt-2 leading-relaxed">
               Opções selecionadas para equipar e proteger seus dispositivos com máxima qualidade.
             </p>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* 2. Área do Carrossel com Setas Interativas Flutuantes */}
-        <div className="relative group/carousel">
+        {/* 2. Área do Carrossel com Setas Interativas Flutuantes e Scroll Reveal */}
+        <ScrollReveal direction="up" distance={24} duration={0.8} delay={0.1} className="relative group/carousel">
           {/* Seta clicável esquerda flutuante (Mobile e Tablet) */}
           <button
             type="button"
@@ -227,10 +228,10 @@ export const ProductsSection: React.FC = () => {
                     href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=${encodeURIComponent(item.whatsappMessage)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between w-full bg-white/95 hover:bg-[#E7192D] text-[#171313] hover:text-white font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl transition-all duration-300 shadow-xl backdrop-blur-md border border-white/40 group/btn"
+                    className="inline-flex items-center justify-between w-full bg-white/95 hover:bg-[#C81024] text-[#171313] hover:text-white font-semibold text-xs sm:text-sm px-4 py-3 rounded-xl transition-all duration-300 shadow-xl backdrop-blur-md border border-white/40 group/btn"
                   >
                     <span className="flex items-center gap-2">
-                      <i className="fa-brands fa-whatsapp text-sm text-[#25D366] group-hover/btn:text-white transition-colors" aria-hidden="true"></i>
+                      <i className="fa-brands fa-whatsapp text-sm text-[#15803D] group-hover/btn:text-white transition-colors" aria-hidden="true"></i>
                       <span>Consultar</span>
                     </span>
                     <span className="inline-flex items-center gap-1.5 text-[11px] font-medium opacity-80 group-hover/btn:opacity-100">
@@ -277,20 +278,20 @@ export const ProductsSection: React.FC = () => {
               <i className="fa-solid fa-chevron-right text-xs" aria-hidden="true"></i>
             </button>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* 4. Botão Central de Consulta Geral no WhatsApp */}
-        <div className="text-center mt-8 sm:mt-12">
+        {/* 4. Botão Central de Consulta Geral no WhatsApp com Scroll Reveal */}
+        <ScrollReveal direction="up" distance={18} duration={0.7} delay={0.15} className="text-center mt-8 sm:mt-12">
           <a
             href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20a%20disponibilidade%20de%20produtos%20na%20J%27Cell.`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2.5 bg-white text-[#D7192D] hover:bg-neutral-100 font-bold text-sm sm:text-base px-7 py-3.5 min-h-[48px] rounded-full transition-all duration-200 shadow-xl text-decoration-none hover:shadow-2xl hover:scale-[1.02] active:scale-95"
+            className="inline-flex items-center justify-center gap-2.5 bg-white text-[#C81024] hover:bg-neutral-100 font-bold text-sm sm:text-base px-7 py-3.5 min-h-[48px] rounded-full transition-all duration-200 shadow-xl text-decoration-none hover:shadow-2xl hover:scale-[1.02] active:scale-95"
           >
-            <i className="fa-brands fa-whatsapp text-lg sm:text-xl text-[#D7192D]" aria-hidden="true"></i>
+            <i className="fa-brands fa-whatsapp text-lg sm:text-xl text-[#15803D]" aria-hidden="true"></i>
             <span>Consultar disponibilidade geral</span>
           </a>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* MODAL TELA CHEIA PARA O PRODUTO SELECIONADO (z-[9999]) */}
@@ -316,7 +317,7 @@ export const ProductsSection: React.FC = () => {
 
             <button
               onClick={() => setFullscreenItem(null)}
-              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-[#D7192D] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#D7192D] cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-[#C81024] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white cursor-pointer"
               aria-label="Fechar modo tela cheia"
               title="Fechar (Esc)"
             >
@@ -341,7 +342,7 @@ export const ProductsSection: React.FC = () => {
             className="flex flex-col sm:flex-row items-center justify-between w-full max-w-4xl pt-3 px-2 gap-2"
             onClick={(e) => e.stopPropagation()}
           >
-            <span className="text-xs text-white/60">
+            <span className="text-xs text-white/70">
               Pressione <kbd className="px-1.5 py-0.5 rounded bg-white/15 text-white font-mono text-[11px] border border-white/20">ESC</kbd> para fechar
             </span>
 
@@ -349,7 +350,7 @@ export const ProductsSection: React.FC = () => {
               href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=${encodeURIComponent(fullscreenItem.whatsappMessage)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-xs sm:text-sm transition-all shadow-md active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#15803D] hover:bg-[#166534] text-white font-semibold text-xs sm:text-sm transition-all shadow-md active:scale-95"
             >
               <i className="fa-brands fa-whatsapp text-base" aria-hidden="true"></i>
               <span>Consultar este produto no WhatsApp</span>

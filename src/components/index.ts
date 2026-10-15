@@ -15,3 +15,4 @@ export { Footer } from './Footer';
 export { WhatsAppFloating } from './WhatsAppFloating';
 export { ShareModal } from './ShareModal';
 export { ImageWithFallback } from './ImageWithFallback';
+export { ScrollReveal, ScrollRevealStagger, ScrollRevealItem } from './ScrollReveal';

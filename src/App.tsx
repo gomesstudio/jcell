@@ -17,7 +17,7 @@ import { WhatsAppFloating } from './components/WhatsAppFloating';
 
 export default function App() {
   return (
-    <div className="min-h-screen text-white flex flex-col font-sans selection:bg-white selection:text-[#E7192D] relative bg-[#850A19] overflow-x-hidden">
+    <div className="min-h-screen text-white flex flex-col font-sans selection:bg-white selection:text-[#C81024] relative bg-[#850A19] overflow-x-hidden">
       {/* 
         SISTEMA DE FUNDO VERMELHO PREMIUM J'CELL COM ILUMINAÇÃO AMBIENTE ANIMADA:
         Base viva e contínua com Vermelho Principal (#E7192D), Vermelho de Transição (#C81024)

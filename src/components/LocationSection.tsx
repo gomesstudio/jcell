@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { STORE_INFO, IMAGES } from '../data/mockData';
+import { ScrollReveal } from './ScrollReveal';
 
 export const LocationSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -46,17 +47,17 @@ export const LocationSection: React.FC = () => {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Rótulo Centralizado no Topo da Seção com cor branca */}
-        <div className="text-center mb-6 sm:mb-8 lg:mb-10">
+        {/* Rótulo Centralizado no Topo da Seção com Scroll Reveal */}
+        <ScrollReveal direction="up" distance={16} duration={0.6} className="text-center mb-6 sm:mb-8 lg:mb-10">
           <span className="inline-block text-white font-bold text-xs sm:text-[13px] tracking-[0.25em] uppercase font-heading">
             ONDE ESTAMOS
           </span>
-        </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 xl:gap-20 items-center">
           
-          {/* COLUNA ESQUERDA: Textos Institucionais & Card de Endereço Oficial */}
-          <div className="lg:col-span-5 space-y-7 sm:space-y-9 lg:space-y-10">
+          {/* COLUNA ESQUERDA: Textos Institucionais & Card de Endereço Oficial com Scroll Reveal */}
+          <ScrollReveal direction="up" distance={22} duration={0.7} className="lg:col-span-5 space-y-7 sm:space-y-9 lg:space-y-10">
             
             {/* Título Principal em 2 Linhas Marcantes */}
             <h2 className="font-heading font-black text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] xl:text-5xl tracking-tight text-white uppercase leading-[1.08] m-0 text-center lg:text-left">
@@ -64,15 +65,15 @@ export const LocationSection: React.FC = () => {
             </h2>
 
             {/* Card de Endereço Oficial em card escuro #222020 */}
-            <div className="rounded-2xl bg-[#222020]/80 border border-white/20 p-5 sm:p-6 shadow-2xl backdrop-blur-md !mt-10 sm:!mt-12 lg:!mt-14">
+            <div className="rounded-2xl bg-[#222020]/80 border border-white/20 p-5 sm:p-6 shadow-2xl backdrop-blur-md !mt-6 sm:!mt-7 lg:!mt-8">
               <div className="flex items-start gap-3.5 sm:gap-4">
                 
-                {/* Ícone de Pino com Badge Escuro e Borda em Vermelho */}
+                {/* Ícone de Pino com Badge e Borda em Vermelho Escuro de Alto Contraste */}
                 <div 
-                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#171313] border border-[#E7192D]/50 flex items-center justify-center shrink-0 text-[#E7192D] shadow-inner"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#C81024] border border-white/20 flex items-center justify-center shrink-0 text-white shadow-inner"
                   aria-hidden="true"
                 >
-                  <i className="fa-solid fa-location-dot text-base sm:text-lg"></i>
+                  <i className="fa-solid fa-location-dot text-base sm:text-lg text-white"></i>
                 </div>
 
                 {/* Textos de Endereço */}
@@ -83,33 +84,33 @@ export const LocationSection: React.FC = () => {
                   <p className="text-sm sm:text-[15px] font-medium text-white leading-snug m-0">
                     Rua Caxambu, nº 396 (Calçadão) — Centro
                   </p>
-                  <p className="text-xs sm:text-sm text-[#D2CACC] leading-snug m-0">
+                  <p className="text-xs sm:text-sm text-neutral-200 leading-snug m-0">
                     Nanuque - MG • CEP 39860-000
                   </p>
 
-                  {/* Ação Interativa: Copiar Endereço Completo */}
+                  {/* Ação Interativa: Copiar Endereço Completo com Alto Contraste WCAG AAA (15.6:1) */}
                   <div className="pt-2">
                     <button
                       type="button"
                       onClick={handleCopyAddress}
-                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#E7192D] hover:text-white transition-colors cursor-pointer group focus:outline-none"
+                      className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/25 hover:border-white/50 text-xs sm:text-[13px] font-semibold text-white transition-all cursor-pointer group focus:outline-none focus-visible:ring-2 focus-visible:ring-white shadow-sm"
                     >
                       <i 
-                        className={`${copied ? 'fa-solid fa-check text-green-400' : 'fa-regular fa-copy'} text-sm transition-transform group-hover:scale-110`} 
+                        className={`${copied ? 'fa-solid fa-check text-emerald-400' : 'fa-regular fa-copy text-white'} text-xs transition-transform group-hover:scale-110`} 
                         aria-hidden="true"
                       />
-                      <span className={copied ? 'text-green-400 font-bold' : ''}>
-                        {copied ? 'Endereço copiado!' : 'Copiar endereço completo'}
+                      <span className={copied ? 'text-emerald-400 font-bold' : 'text-white'}>
+                        {copied ? 'Endereço copiado!' : 'Copiar endereço'}
                       </span>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* COLUNA DIREITA: Card Visual com Mapa Dark Suave, Logo Flutuante com Glow e Botão "COMO CHEGAR" */}
-          <div className="lg:col-span-7">
+          {/* COLUNA DIREITA: Card Visual com Mapa Dark Suave, Logo Flutuante com Glow e Botão "COMO CHEGAR" com Scroll Reveal */}
+          <ScrollReveal direction="up" distance={26} duration={0.8} delay={0.15} className="lg:col-span-7">
             <div className="rounded-2xl sm:rounded-3xl border border-white/20 overflow-hidden relative min-h-[340px] xs:min-h-[380px] sm:min-h-[420px] lg:min-h-[440px] flex flex-col items-center justify-center text-center p-6 sm:p-10 shadow-2xl bg-[#222020] group">
               
               {/* Foto de Fundo do Mapa com Tratamento Equilibrado (Menos Escuro) */}
@@ -159,10 +160,10 @@ export const LocationSection: React.FC = () => {
                   href={STORE_INFO.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-3.5 min-h-[46px] rounded-full border border-[#E7192D] bg-[#E7192D]/20 hover:bg-[#E7192D] text-white font-bold text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-[0_0_20px_rgba(231,25,45,0.4)] hover:shadow-[0_0_35px_rgba(231,25,45,0.7)] group/btn transform hover:-translate-y-0.5 active:scale-98 text-decoration-none"
+                  className="inline-flex items-center gap-2.5 px-7 sm:px-8 py-3.5 min-h-[46px] rounded-full border-2 border-white/80 bg-[#C81024]/60 hover:bg-[#C81024] text-white font-bold text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-[0_0_20px_rgba(200,16,36,0.4)] hover:shadow-[0_0_35px_rgba(200,16,36,0.7)] group/btn transform hover:-translate-y-0.5 active:scale-98 text-decoration-none"
                 >
                   <i 
-                    className="fa-solid fa-location-dot text-[#E7192D] group-hover/btn:text-white text-sm transition-colors" 
+                    className="fa-solid fa-location-dot text-white text-sm transition-colors" 
                     aria-hidden="true"
                   />
                   <span>COMO CHEGAR</span>
@@ -173,7 +174,7 @@ export const LocationSection: React.FC = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
       </div>

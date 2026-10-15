@@ -56,8 +56,8 @@
   }
 
   :focus-visible {
-    outline: 2px solid #E7192D;
-    outline-offset: 2px;
+    outline: 2px solid #FFFFFF;
+    outline-offset: 3px;
   }
 }
 
@@ -72,14 +72,14 @@
   line-height: 1.18;
 }
 
-/* Eyebrow styling */
+/* Eyebrow styling com alto contraste WCAG */
 .eyebrow-light {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #D7192D;
+  color: #C81024;
 }
 
 .eyebrow-dark {
@@ -259,5 +259,17 @@
   .animate-wave-pulse {
     animation: wavePulse 18s ease-in-out infinite;
     will-change: transform, opacity;
+  }
+}
+
+/* Suporte à preferência de redução de movimento (Acessibilidade) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

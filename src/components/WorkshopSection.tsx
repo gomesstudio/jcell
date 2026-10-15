@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { STORE_INFO, IMAGES, WORKSHOP_SERVICES } from '../data/mockData';
 import { ImageWithFallback } from './ImageWithFallback';
+import { ScrollReveal, ScrollRevealStagger, ScrollRevealItem } from './ScrollReveal';
 
 export const WorkshopSection: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -118,82 +119,83 @@ export const WorkshopSection: React.FC = () => {
           {/* COLUNA ESQUERDA — CONTEÚDO COMERCIAL, GRADE E AÇÃO */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             
-            {/* 1. Pequeno Rótulo Superior com Filete Vermelho */}
-            <div className="flex items-center justify-center sm:justify-start gap-3 mb-3 sm:mb-3.5">
-              <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase text-white/90 font-heading">
-                OFICINA ESPECIALIZADA
-              </span>
-              <span className="h-[2px] w-10 sm:w-12 bg-[#E7192D] rounded-full inline-block" aria-hidden="true" />
-            </div>
+            {/* 1. Pequeno Rótulo Superior e Título Principal com Scroll Reveal */}
+            <ScrollReveal direction="up" distance={20} duration={0.7}>
+              <div className="flex items-center justify-center sm:justify-start gap-3 mb-3 sm:mb-3.5">
+                <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase text-white/90 font-heading">
+                  OFICINA ESPECIALIZADA
+                </span>
+                <span className="h-[2px] w-10 sm:w-12 bg-[#E7192D] rounded-full inline-block" aria-hidden="true" />
+              </div>
 
-            {/* 2. Título Principal Alinhado à Esquerda */}
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-extrabold font-heading text-white leading-[1.14] tracking-tight mb-2.5 text-center sm:text-left">
-              Assistência técnica para celulares e tablets
-            </h2>
+              {/* 2. Título Principal Alinhado à Esquerda */}
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-extrabold font-heading text-white leading-[1.14] tracking-tight mb-2.5 text-center sm:text-left">
+                Assistência técnica para celulares e tablets
+              </h2>
 
-            {/* 3. Subtítulo */}
-            <p className="text-[#D2CACC] text-sm sm:text-base leading-relaxed max-w-xl mb-6 sm:mb-7 text-center sm:text-left mx-auto sm:mx-0">
-              Diagnóstico e reparo realizados com técnicos especializados.
-            </p>
+              {/* 3. Subtítulo */}
+              <p className="text-[#D2CACC] text-sm sm:text-base leading-relaxed max-w-xl mb-6 sm:mb-7 text-center sm:text-left mx-auto sm:mx-0">
+                Diagnóstico e reparo realizados com técnicos especializados.
+              </p>
+            </ScrollReveal>
 
             {/* NA VERSÃO MOBILE: Exibe a Arte Promocional logo após o Subtítulo */}
             <div className="block lg:hidden">
               {renderPromotionalArt(true)}
             </div>
 
-            {/* 4. Grade dos Seis Serviços em cards escuros #222020 */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 mb-7 sm:mb-8">
+            {/* 4. Grade dos Seis Serviços em cards escuros #222020 com Stagger Reveal */}
+            <ScrollRevealStagger staggerDelay={0.10} delayChildren={0.1} className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 mb-7 sm:mb-8">
               {WORKSHOP_SERVICES.map((serv, index) => (
-                <div
-                  key={index}
-                  className="h-full flex items-center gap-3.5 p-3.5 sm:p-4 rounded-2xl bg-[#222020]/90 hover:bg-[#222020] border border-white/15 hover:border-[#E7192D]/60 transition-all duration-200 shadow-sm group"
-                >
-                  {/* Ícone Quadrado Vermelho da Marca */}
-                  <div 
-                    className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#E7192D] text-white flex items-center justify-center shrink-0 shadow-md shadow-[#E7192D]/30 transition-transform duration-200 group-hover:scale-105"
-                    aria-hidden="true"
-                  >
-                    <i className={`fa-solid ${serv.icon} text-lg sm:text-xl`}></i>
+                <ScrollRevealItem key={index}>
+                  <div className="h-full flex items-center gap-3.5 p-4 rounded-2xl bg-[#222020]/80 hover:bg-[#222020] border border-white/15 hover:border-white/35 transition-all duration-300 shadow-md hover:shadow-xl shadow-black/30 hover:-translate-y-0.5 group">
+                    {/* Ícone Quadrado Vermelho da Marca com Alto Contraste */}
+                    <div 
+                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#C81024] border border-white/20 text-white flex items-center justify-center shrink-0 shadow-md shadow-black/30 transition-transform duration-300 group-hover:scale-105"
+                      aria-hidden="true"
+                    >
+                      <i className={`fa-solid ${serv.icon} text-lg sm:text-xl text-white`}></i>
+                    </div>
+                    
+                    {/* Textos: Título e Descrição */}
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-heading font-bold text-sm sm:text-[15px] text-white mb-0.5 leading-snug tracking-tight">
+                        {serv.title}
+                      </h3>
+                      <p className="text-xs text-[#D2CACC] leading-relaxed m-0">
+                        {serv.description}
+                      </p>
+                    </div>
                   </div>
-                  
-                  {/* Textos: Título e Descrição */}
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-heading font-bold text-sm sm:text-[15px] text-white mb-0.5 leading-snug">
-                      {serv.title}
-                    </h3>
-                    <p className="text-xs text-[#D2CACC] leading-relaxed m-0">
-                      {serv.description}
-                    </p>
-                  </div>
-                </div>
+                </ScrollRevealItem>
               ))}
-            </div>
+            </ScrollRevealStagger>
 
-            {/* 5 e 6. Botão de Conversão "Pedir Orçamento" e Texto Auxiliar */}
-            <div className="flex flex-col items-center sm:items-start gap-3 w-full sm:w-auto">
+            {/* 5 e 6. Botão de Conversão "Pedir Orçamento" com Alto Contraste WCAG (10.3:1) e Texto Auxiliar com Scroll Reveal */}
+            <ScrollReveal direction="up" distance={18} duration={0.7} delay={0.2} className="flex flex-col items-center sm:items-start gap-3 w-full sm:w-auto">
               <a
                 href={`https://wa.me/${STORE_INFO.phoneWorkshopRaw}?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20na%20oficina%20da%20J%27Cell.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:px-9 sm:py-4 rounded-full bg-[#E7192D] hover:bg-[#C81024] text-white font-bold text-sm sm:text-base shadow-lg shadow-[#E7192D]/30 hover:shadow-xl hover:shadow-[#E7192D]/50 transition-all duration-300 transform hover:scale-[1.02] active:scale-98 group/btn text-decoration-none min-h-[48px]"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:px-9 sm:py-4 rounded-full bg-white hover:bg-neutral-100 text-[#C81024] font-bold text-sm sm:text-base shadow-xl shadow-black/35 hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] active:scale-98 group/btn text-decoration-none min-h-[48px]"
               >
-                <i className="fa-brands fa-whatsapp text-lg sm:text-xl text-white" aria-hidden="true"></i>
+                <i className="fa-brands fa-whatsapp text-lg sm:text-xl text-[#15803D]" aria-hidden="true"></i>
                 <span>Pedir Orçamento</span>
-                <i className="fa-solid fa-arrow-right text-xs transition-transform group-hover/btn:translate-x-1" aria-hidden="true"></i>
+                <i className="fa-solid fa-arrow-right text-xs text-[#C81024] transition-transform group-hover/btn:translate-x-1" aria-hidden="true"></i>
               </a>
 
-              <div className="flex items-center gap-2 text-xs sm:text-sm text-[#D2CACC] pl-1">
-                <span className="w-2 h-2 rounded-full bg-[#E7192D] shrink-0" aria-hidden="true"></span>
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-white/95 font-medium pl-1">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" aria-hidden="true"></span>
                 <span>Atendimento direto com o técnico responsável.</span>
               </div>
-            </div>
+            </ScrollReveal>
 
           </div>
 
-          {/* COLUNA DIREITA — ARTE PROMOCIONAL VERTICAL (No Desktop) */}
-          <div className="hidden lg:flex lg:col-span-5 items-center justify-center xl:justify-end">
+          {/* COLUNA DIREITA — ARTE PROMOCIONAL VERTICAL (No Desktop) com Scroll Reveal */}
+          <ScrollReveal direction="up" distance={28} duration={0.8} delay={0.15} className="hidden lg:flex lg:col-span-5 items-center justify-center xl:justify-end">
             {renderPromotionalArt(false)}
-          </div>
+          </ScrollReveal>
 
         </div>
 
@@ -222,7 +224,7 @@ export const WorkshopSection: React.FC = () => {
 
             <button
               onClick={() => setIsFullscreen(false)}
-              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-[#E7192D] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#E7192D] cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-[#C81024] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white cursor-pointer"
               aria-label="Fechar modo tela cheia"
               title="Fechar (Esc)"
             >

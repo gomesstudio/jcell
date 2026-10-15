@@ -144,15 +144,15 @@ export const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* Botão Compartilhar Desktop */}
+          {/* Botão Compartilhar Desktop com Alto Contraste WCAG (6.0:1) */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <button
               type="button"
               onClick={() => setIsShareOpen(true)}
               aria-label="Compartilhar site da J'Cell por link ou redes sociais"
-              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-neutral-100 text-[#E7192D] font-semibold text-xs sm:text-[13px] px-4 py-2 min-h-[36px] rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:scale-[1.02] cursor-pointer whitespace-nowrap shrink-0"
+              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-neutral-100 text-[#C81024] font-semibold text-xs sm:text-[13px] px-4 py-2 min-h-[36px] rounded-full transition-all duration-200 shadow-md hover:shadow-lg hover:scale-[1.02] cursor-pointer whitespace-nowrap shrink-0"
             >
-              <i className="fa-solid fa-share-nodes text-xs sm:text-sm text-[#E7192D]" aria-hidden="true"></i>
+              <i className="fa-solid fa-share-nodes text-xs sm:text-sm text-[#C81024]" aria-hidden="true"></i>
               <span>Compartilhar</span>
             </button>
           </div>
@@ -210,14 +210,14 @@ export const Navbar: React.FC = () => {
               ))}
             </div>
 
-            {/* Ações Rápidas no Menu Mobile */}
+            {/* Ações Rápidas no Menu Mobile com Contraste WCAG Aprovado */}
             <div className="pt-3 mt-3 border-t border-white/10 flex flex-col gap-2">
               <a
                 href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Gostaria%20de%20um%20atendimento%20na%20J%27Cell.`}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-sm py-3 rounded-xl transition-all shadow-md active:scale-98"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#15803D] hover:bg-[#166534] text-white font-semibold text-sm py-3 rounded-xl transition-all shadow-md active:scale-98"
               >
                 <i className="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
                 <span>Falar no WhatsApp</span>

@@ -183,9 +183,9 @@ export const HeroSection: React.FC = () => {
               href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Gostaria%20de%20um%20atendimento%20na%20J%27Cell.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto sm:min-w-[190px] inline-flex items-center justify-center gap-2.5 bg-white text-[#E7192D] hover:bg-neutral-100 font-bold text-sm sm:text-[15px] px-6 py-3 min-h-[48px] rounded-full transition-all duration-200 shadow-md hover:shadow-xl text-decoration-none active:scale-98"
+              className="w-full sm:w-auto sm:min-w-[190px] inline-flex items-center justify-center gap-2.5 bg-white text-[#C81024] hover:bg-neutral-100 font-bold text-sm sm:text-[15px] px-6 py-3 min-h-[48px] rounded-full transition-all duration-200 shadow-md hover:shadow-xl text-decoration-none active:scale-98"
             >
-              <i className="fa-brands fa-whatsapp text-lg text-[#E7192D]" aria-hidden="true"></i>
+              <i className="fa-brands fa-whatsapp text-lg text-[#C81024]" aria-hidden="true"></i>
               <span>Fale Conosco</span>
             </motion.a>
 
@@ -196,7 +196,7 @@ export const HeroSection: React.FC = () => {
               href={STORE_INFO.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto sm:min-w-[190px] inline-flex items-center justify-center gap-2.5 bg-black/30 hover:bg-white/10 text-white border-2 border-white/90 font-bold text-sm sm:text-[15px] px-6 py-3 min-h-[48px] rounded-full transition-all duration-200 text-decoration-none backdrop-blur-sm shadow-sm hover:shadow-md active:scale-98"
+              className="w-full sm:w-auto sm:min-w-[190px] inline-flex items-center justify-center gap-2.5 bg-black/35 hover:bg-white/10 text-white border-2 border-white/95 font-bold text-sm sm:text-[15px] px-6 py-3 min-h-[48px] rounded-full transition-all duration-200 text-decoration-none backdrop-blur-sm shadow-sm hover:shadow-md active:scale-98"
             >
               <i className="fa-brands fa-instagram text-lg text-white" aria-hidden="true"></i>
               <span>Siga no Instagram</span>
@@ -205,9 +205,7 @@ export const HeroSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* 4. INDICADOR TIPO SETA PARA ROLAGEM PARA BAIXO
-          Interativo, animado e delicado, posicionado no extremo inferior central
-      */}
+      {/* 4. INDICADOR TIPO SETA PARA ROLAGEM PARA BAIXO COM ALTO CONTRASTE */}
       <div className="relative z-20 w-full flex justify-center pb-3 sm:pb-5 mt-auto">
         <motion.button
           type="button"
@@ -226,12 +224,12 @@ export const HeroSection: React.FC = () => {
               ease: "easeInOut" 
             }
           }}
-          className="group flex flex-col items-center gap-1 text-white/80 hover:text-white transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 rounded-full py-0.5 px-3"
+          className="group flex flex-col items-center gap-1 text-white hover:text-white transition-colors duration-200 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-full py-0.5 px-3"
         >
-          <span className="text-[10px] sm:text-xs font-medium tracking-wider uppercase opacity-75 group-hover:opacity-100 transition-opacity select-none">
+          <span className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-white drop-shadow-sm group-hover:underline select-none">
             Role para explorar
           </span>
-          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/25 group-hover:bg-black/40 border border-white/25 group-hover:border-white/50 flex items-center justify-center backdrop-blur-md transition-all shadow-md group-hover:scale-105">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/40 group-hover:bg-black/60 border border-white/40 group-hover:border-white/80 flex items-center justify-center backdrop-blur-md transition-all shadow-md group-hover:scale-105">
             <i className="fa-solid fa-chevron-down text-[11px] sm:text-xs text-white group-hover:translate-y-0.5 transition-transform" aria-hidden="true" />
           </div>
         </motion.button>
