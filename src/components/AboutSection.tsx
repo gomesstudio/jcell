@@ -50,57 +50,24 @@ export const AboutSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* 1. TOPO DA SEÇÃO: Identificador Centralizado, Título Principal e Faixa de Credibilidade */}
-        <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-10 lg:mb-12">
+        {/* Identificador e Título para Versão Mobile (mantém ordem natural e centralizada no celular) */}
+        <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8 lg:hidden">
           <span className="inline-block text-white/95 font-bold text-xs sm:text-[13px] tracking-[0.2em] uppercase font-heading mb-2">
             QUEM SOMOS
           </span>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] font-heading font-extrabold text-white leading-tight tracking-tight m-0 mb-6 sm:mb-8">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-heading font-extrabold text-white leading-tight tracking-tight m-0">
             Mais de 20 anos ao seu lado!
           </h2>
-
-          {/* Faixa de Credibilidade com 3 Pilares Oficiais em cards escuros elegantes #222020 */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3.5 text-left">
-            <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-[#222020]/50 border border-white/20 backdrop-blur-md shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#E7192D]/25 border border-[#E7192D]/60 flex items-center justify-center shrink-0 text-white">
-                <i className="fa-solid fa-clock-rotate-left text-sm" aria-hidden="true"></i>
-              </div>
-              <div className="min-w-0">
-                <p className="font-heading font-bold text-xs sm:text-[13px] text-white m-0 leading-tight">Mais de 20 Anos</p>
-                <p className="text-[11px] text-[#D2CACC] m-0 mt-0.5 leading-tight">De história e confiança</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-[#222020]/50 border border-white/20 backdrop-blur-md shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#E7192D]/25 border border-[#E7192D]/60 flex items-center justify-center shrink-0 text-white">
-                <i className="fa-solid fa-location-dot text-sm" aria-hidden="true"></i>
-              </div>
-              <div className="min-w-0">
-                <p className="font-heading font-bold text-xs sm:text-[13px] text-white m-0 leading-tight">Presença em Nanuque</p>
-                <p className="text-[11px] text-[#D2CACC] m-0 mt-0.5 leading-tight">Loja no Calçadão, Centro</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-[#222020]/50 border border-white/20 backdrop-blur-md shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#E7192D]/25 border border-[#E7192D]/60 flex items-center justify-center shrink-0 text-white">
-                <i className="fa-solid fa-screwdriver-wrench text-sm" aria-hidden="true"></i>
-              </div>
-              <div className="min-w-0">
-                <p className="font-heading font-bold text-xs sm:text-[13px] text-white m-0 leading-tight">Assistência Técnica</p>
-                <p className="text-[11px] text-[#D2CACC] m-0 mt-0.5 leading-tight">Especializada celulares e tablets</p>
-              </div>
-            </div>
-          </div>
         </div>
 
-        {/* 2. CONTEÚDO PRINCIPAL EM DUAS COLUNAS EQUILIBRADAS (50% / 50% NO DESKTOP) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16 items-center">
+        {/* ESTRUTURA HERO SPLIT NO DESKTOP: 50% LADO ESQUERDO IMAGEM | 50% LADO DIREITO TEXTOS */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-14 items-stretch">
           
-          {/* COLUNA ESQUERDA: Fotografia Original da Fachada da Loja com clique em tela cheia */}
-          <div className="lg:col-span-6 w-full">
+          {/* LADO ESQUERDO: Imagem da Fachada ocupando todo o lado esquerdo da seção */}
+          <div className="lg:col-span-6 w-full h-full flex flex-col">
             <div 
               onClick={() => setIsFullscreen(true)}
-              className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] xl:aspect-[16/11] max-h-[460px] mx-auto w-full group bg-black/30 cursor-pointer transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+              className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl w-full h-full min-h-[340px] sm:min-h-[420px] lg:min-h-[580px] xl:min-h-[620px] flex-1 group bg-[#222020] cursor-pointer transition-all duration-500 hover:border-white/40 hover:shadow-[0_25px_60px_rgba(0,0,0,0.7)] flex flex-col"
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
@@ -110,36 +77,59 @@ export const AboutSection: React.FC = () => {
                 }
               }}
               aria-label="Ver foto da fachada da loja em tela cheia"
-              title="Clique para ampliar"
+              title="Clique para ampliar a foto da fachada"
             >
               <ImageWithFallback
                 src={IMAGES.fachada}
                 fallbackSrc={IMAGES.cdn.fachada}
                 alt="Fachada oficial da loja J'Cell Acessórios e Variedades em Nanuque - MG"
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full flex-1 object-cover object-center transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
                 decoding="async"
                 fallbackLabel="Fachada J'Cell Nanuque"
               />
-              {/* Leve gradiente sutil periférico para acabamento premium */}
+
+              {/* Degradê sutil cinematográfico */}
               <div 
-                className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 pointer-events-none"
+                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"
                 aria-hidden="true"
               />
 
-              {/* Dica discreta de clique para ampliar no hover */}
-              <div className="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-medium text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center gap-1.5">
-                <i className="fa-solid fa-expand text-[10px]" aria-hidden="true"></i>
+              {/* Selos informativos elegantes na base */}
+              <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-xs font-semibold text-white shadow-lg">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#E7192D] animate-pulse"></span>
+                  <span>Nossa Loja em Nanuque - MG</span>
+                </div>
+                <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-xs text-[#D2CACC] font-medium">
+                  <i className="fa-solid fa-map-pin text-[#E7192D] text-xs" aria-hidden="true"></i>
+                  <span>Calçadão</span>
+                </div>
+              </div>
+
+              {/* Dica de clique para ampliar no hover */}
+              <div className="absolute top-4 right-4 z-10 px-3 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-xs font-medium text-white opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none flex items-center gap-1.5 shadow-lg transform translate-y-1 group-hover:translate-y-0">
+                <i className="fa-solid fa-expand text-xs" aria-hidden="true"></i>
                 <span>Ampliar</span>
               </div>
             </div>
           </div>
 
-          {/* COLUNA DIREITA: Texto Institucional, Citação de Compromisso e Serviços */}
-          <div className="lg:col-span-6 flex flex-col justify-center space-y-6 sm:space-y-7">
+          {/* LADO DIREITO: Todos os textos concentrados aqui no Desktop */}
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-6 sm:space-y-7 h-full py-1">
             
+            {/* Header da Seção integrado ao lado direito no Desktop */}
+            <div className="hidden lg:block space-y-2">
+              <span className="inline-block text-white/95 font-bold text-xs sm:text-[13px] tracking-[0.2em] uppercase font-heading">
+                QUEM SOMOS
+              </span>
+              <h2 className="text-3xl lg:text-4xl xl:text-[42px] font-heading font-extrabold text-white leading-tight tracking-tight m-0">
+                Mais de 20 anos ao seu lado!
+              </h2>
+            </div>
+
             {/* Texto Institucional */}
-            <p className="text-base sm:text-[17px] text-white/95 leading-relaxed font-normal m-0 max-w-xl">
+            <p className="text-base sm:text-[17px] text-white/95 leading-relaxed font-normal m-0 max-w-xl text-center sm:text-left mx-auto sm:mx-0">
               A J&apos;Cell faz parte da história de Nanuque há mais de 20 anos! Tudo isso graças à confiança de cada cliente que passou por nossa loja e continua fazendo parte da nossa trajetória. Temos muito orgulho de oferecer, em um só lugar, tudo o que você precisa para o seu celular além de acessórios, eletrônicos e assistência técnica especializada para celulares e tablets.
               <span className="block mt-4 sm:mt-5 text-white font-semibold">
                 J&apos;Cell uma história construída com você, todos os dias!
@@ -147,7 +137,7 @@ export const AboutSection: React.FC = () => {
             </p>
 
             {/* Citação em Destaque (Compromisso) */}
-            <blockquote className="relative rounded-2xl border border-white/20 bg-[#222020]/60 backdrop-blur-md px-5 py-4 text-white italic text-base sm:text-[17px] font-medium leading-relaxed shadow-sm !mt-10 sm:!mt-14 lg:!mt-16 border-l-4 border-l-white">
+            <blockquote className="relative rounded-2xl border border-white/20 bg-[#222020]/60 backdrop-blur-md px-5 py-4 text-white italic text-base sm:text-[17px] font-medium leading-relaxed shadow-sm !mt-4 sm:!mt-6 border-l-4 border-l-white">
               “Mais do que vender produtos, queremos conquistar sua confiança e estar presentes no seu dia a dia!”
             </blockquote>
 

@@ -121,7 +121,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-md bg-[#1f1f23] text-white rounded-2xl border border-white/15 p-6 sm:p-7 shadow-2xl transform transition-all"
+        className="relative w-full max-w-md bg-[#222020] text-white rounded-2xl border border-white/15 p-6 sm:p-7 shadow-2xl transform transition-all"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Botão Fechar */}
@@ -136,14 +136,14 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
 
         {/* Cabeçalho do Modal */}
         <div className="flex items-center gap-3.5 mb-5 pr-8">
-          <div className="w-11 h-11 rounded-xl bg-[#D7192D] flex items-center justify-center text-white shadow-md shadow-[#D7192D]/30 shrink-0">
+          <div className="w-11 h-11 rounded-xl bg-[#E7192D] flex items-center justify-center text-white shadow-md shadow-[#E7192D]/30 shrink-0">
             <i className="fa-solid fa-share-nodes text-lg" aria-hidden="true"></i>
           </div>
           <div>
             <h2 id="share-modal-title" className="text-lg sm:text-xl font-bold text-white leading-tight">
               Compartilhar Site
             </h2>
-            <p className="text-xs sm:text-sm text-white/70 mt-0.5">
+            <p className="text-xs sm:text-sm text-[#D2CACC] mt-0.5">
               Envie a J'Cell para seus amigos e redes sociais
             </p>
           </div>
@@ -151,7 +151,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
 
         {/* Redes Sociais */}
         <div className="mb-6">
-          <p className="text-xs font-semibold text-white/60 uppercase tracking-wider mb-3">
+          <p className="text-xs font-semibold text-[#D2CACC] uppercase tracking-wider mb-3">
             Compartilhar via
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -184,7 +184,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
 
         {/* Campo Copiar Link */}
         <div>
-          <p className="text-xs font-semibold text-white/60 uppercase tracking-wider mb-2">
+          <p className="text-xs font-semibold text-[#D2CACC] uppercase tracking-wider mb-2">
             Ou copie o link direto
           </p>
           <div className="flex items-center gap-2 bg-black/40 border border-white/15 rounded-xl p-1.5 focus-within:border-white/40 transition-colors">
@@ -196,7 +196,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
               readOnly
               value={shareUrl}
               aria-label="Link do site para copiar"
-              className="bg-transparent text-xs sm:text-sm text-white/90 flex-1 outline-none truncate selection:bg-[#D7192D] selection:text-white"
+              className="bg-transparent text-xs sm:text-sm text-white/90 flex-1 outline-none truncate selection:bg-[#E7192D] selection:text-white"
             />
             <button
               type="button"
@@ -204,7 +204,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
               className={`shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
                 copied
                   ? 'bg-emerald-600 text-white'
-                  : 'bg-[#D7192D] hover:bg-[#b81323] text-white shadow-sm'
+                  : 'bg-[#E7192D] hover:bg-[#C81024] text-white shadow-sm'
               }`}
             >
               <i

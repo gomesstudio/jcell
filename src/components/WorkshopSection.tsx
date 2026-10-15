@@ -30,14 +30,14 @@ export const WorkshopSection: React.FC = () => {
       <div className="relative group">
         {/* Glow atmosférico suave vermelho */}
         <div 
-          className="absolute -inset-1.5 rounded-[26px] sm:rounded-[32px] bg-gradient-to-tr from-[#D7192D]/35 via-white/10 to-[#D7192D]/30 opacity-70 blur-xl group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
+          className="absolute -inset-1.5 rounded-[26px] sm:rounded-[32px] bg-gradient-to-tr from-[#E7192D]/35 via-white/10 to-[#E7192D]/30 opacity-70 blur-xl group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
           aria-hidden="true"
         />
 
         {/* Moldura da Arte com Cantos Arredondados e Sombra Profunda */}
         <div 
           onClick={() => setIsFullscreen(true)}
-          className="relative cursor-pointer rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] border border-white/15 bg-black/60 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_35px_70px_-15px_rgba(215,25,45,0.3)]"
+          className="relative cursor-pointer rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] border border-white/15 bg-black/60 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_35px_70px_-15px_rgba(231,25,45,0.3)]"
           role="button"
           tabIndex={0}
           onKeyDown={(e) => {
@@ -119,7 +119,7 @@ export const WorkshopSection: React.FC = () => {
           <div className="lg:col-span-7 flex flex-col justify-center">
             
             {/* 1. Pequeno Rótulo Superior com Filete Vermelho */}
-            <div className="flex items-center gap-3 mb-3 sm:mb-3.5">
+            <div className="flex items-center justify-center sm:justify-start gap-3 mb-3 sm:mb-3.5">
               <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] uppercase text-white/90 font-heading">
                 OFICINA ESPECIALIZADA
               </span>
@@ -127,12 +127,12 @@ export const WorkshopSection: React.FC = () => {
             </div>
 
             {/* 2. Título Principal Alinhado à Esquerda */}
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-extrabold font-heading text-white leading-[1.14] tracking-tight mb-2.5">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] xl:text-[44px] font-extrabold font-heading text-white leading-[1.14] tracking-tight mb-2.5 text-center sm:text-left">
               Assistência técnica para celulares e tablets
             </h2>
 
             {/* 3. Subtítulo */}
-            <p className="text-[#D2CACC] text-sm sm:text-base leading-relaxed max-w-xl mb-6 sm:mb-7">
+            <p className="text-[#D2CACC] text-sm sm:text-base leading-relaxed max-w-xl mb-6 sm:mb-7 text-center sm:text-left mx-auto sm:mx-0">
               Diagnóstico e reparo realizados com técnicos especializados.
             </p>
 
@@ -214,7 +214,7 @@ export const WorkshopSection: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#D7192D] animate-pulse"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#E7192D] animate-pulse"></span>
               <span className="text-xs sm:text-sm font-semibold tracking-wide uppercase text-neutral-300">
                 Assistência Técnica J'Cell
               </span>
@@ -222,7 +222,7 @@ export const WorkshopSection: React.FC = () => {
 
             <button
               onClick={() => setIsFullscreen(false)}
-              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-[#D7192D] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#D7192D] cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-full bg-white/10 hover:bg-[#E7192D] text-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#E7192D] cursor-pointer"
               aria-label="Fechar modo tela cheia"
               title="Fechar (Esc)"
             >

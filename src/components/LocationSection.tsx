@@ -59,7 +59,7 @@ export const LocationSection: React.FC = () => {
           <div className="lg:col-span-5 space-y-7 sm:space-y-9 lg:space-y-10">
             
             {/* Título Principal em 2 Linhas Marcantes */}
-            <h2 className="font-heading font-black text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] xl:text-5xl tracking-tight text-white uppercase leading-[1.08] m-0">
+            <h2 className="font-heading font-black text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] xl:text-5xl tracking-tight text-white uppercase leading-[1.08] m-0 text-center lg:text-left">
               LOCALIZAÇÃO<br />PRIVILEGIADA
             </h2>
 

@@ -157,14 +157,6 @@ export const HeroSection: React.FC = () => {
           {/* H1 Acessível para SEO e Leitores de Tela */}
           <h1 className="sr-only">J&apos;Cell Acessórios e Variedades - Nanuque - MG</h1>
 
-          {/* Tag de Posicionamento / Valor da Marca */}
-          <motion.div variants={itemVariants} className="mb-4 sm:mb-5 flex justify-center sm:justify-start">
-            <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/35 backdrop-blur-md border border-white/20 text-xs sm:text-[13px] font-semibold text-white tracking-wide shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" aria-hidden="true" />
-              <span>Acessórios • Assistência Técnica • Películas em Nanuque</span>
-            </span>
-          </motion.div>
-
           {/* Logo Oficial J'Cell Nítida e Perfeitamente Sincronizada com os Botões */}
           <motion.div 
             variants={itemVariants}

@@ -103,9 +103,11 @@ export const FilmSection: React.FC = () => {
           {/* Conteúdo e Benefícios - À esquerda no desktop (order-1) */}
           <div className="lg:col-span-6 order-1 space-y-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-semibold text-white mb-3">
-                <i className="fa-solid fa-shield-halved text-[#E7192D] text-xs"></i>
-                <span>Proteção Máxima para Telas</span>
+              <div className="flex justify-center sm:justify-start mb-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-semibold text-white">
+                  <i className="fa-solid fa-shield-halved text-[#E7192D] text-xs"></i>
+                  <span>Proteção Máxima para Telas</span>
+                </div>
               </div>
 
               {/* Na versão mobile: Imagem aparece primeiro logo após o texto "Proteção Máxima para Telas" */}
@@ -113,11 +115,11 @@ export const FilmSection: React.FC = () => {
                 {renderMachineImage()}
               </div>
               
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight text-white leading-tight">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black font-heading tracking-tight text-white leading-tight text-center sm:text-left">
                 Aplicação de Película de Hidrogel <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/70">Sob Medida</span>
               </h2>
 
-              <p className="text-sm sm:text-base text-[#D2CACC] mt-3 max-w-prose leading-relaxed">
+              <p className="text-sm sm:text-base text-[#D2CACC] mt-3 max-w-prose leading-relaxed text-center sm:text-left mx-auto sm:mx-0">
                 Proteção personalizada para celulares, tablets, smartwatches e telas automotivas. Com corte de alta precisão, a JCell oferece soluções sob medida para diversos dispositivos.
               </p>
             </div>
@@ -207,7 +209,7 @@ export const FilmSection: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#D7192D]" aria-hidden="true"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#E7192D]" aria-hidden="true"></span>
               <span className="font-heading font-semibold text-sm sm:text-base tracking-wide">
                 Máquina de Corte Hidrogel — J'Cell
               </span>
@@ -217,7 +219,7 @@ export const FilmSection: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsFullscreen(false)}
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-[#D7192D] text-white flex items-center justify-center border border-white/30 backdrop-blur-md transition-all duration-200 shadow-2xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-[#E7192D] text-white flex items-center justify-center border border-white/30 backdrop-blur-md transition-all duration-200 shadow-2xl group cursor-pointer focus:outline-none focus:ring-2 focus:ring-white"
               aria-label="Fechar tela cheia"
             >
               <i className="fa-solid fa-xmark text-lg sm:text-xl transition-transform duration-200 group-hover:rotate-90" aria-hidden="true"></i>
