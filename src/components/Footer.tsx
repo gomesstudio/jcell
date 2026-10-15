@@ -41,39 +41,39 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Links de contato compactos em linha */}
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 text-neutral-300">
+          {/* Links de contato compactos apenas com ícones */}
+          <div className="flex items-center justify-center gap-2.5 sm:gap-3 text-neutral-300">
             <a 
               href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20J%27Cell.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 transition-all text-xs font-medium text-white shadow-sm"
-              title="WhatsApp Loja"
+              className="w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 hover:border-emerald-400/50 flex items-center justify-center transition-all duration-200 text-white shadow-sm hover:scale-105 active:scale-95 group"
+              title={`WhatsApp Loja: ${STORE_INFO.phoneStore}`}
+              aria-label={`WhatsApp Loja: ${STORE_INFO.phoneStore}`}
             >
-              <i className="fa-brands fa-whatsapp text-emerald-400 text-sm" aria-hidden="true"></i>
-              <span>Loja: {STORE_INFO.phoneStore}</span>
+              <i className="fa-brands fa-whatsapp text-emerald-400 text-base group-hover:scale-110 transition-transform" aria-hidden="true"></i>
             </a>
 
             <a 
               href={`https://wa.me/${STORE_INFO.phoneWorkshopRaw}?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento%20na%20oficina%20da%20J%27Cell.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 transition-all text-xs font-medium text-white shadow-sm"
-              title="WhatsApp Oficina"
+              className="w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 hover:border-amber-400/50 flex items-center justify-center transition-all duration-200 text-white shadow-sm hover:scale-105 active:scale-95 group"
+              title={`WhatsApp Oficina: ${STORE_INFO.phoneWorkshop}`}
+              aria-label={`WhatsApp Oficina: ${STORE_INFO.phoneWorkshop}`}
             >
-              <i className="fa-solid fa-wrench text-amber-400 text-xs" aria-hidden="true"></i>
-              <span>Oficina: {STORE_INFO.phoneWorkshop}</span>
+              <i className="fa-solid fa-wrench text-amber-400 text-sm group-hover:scale-110 transition-transform" aria-hidden="true"></i>
             </a>
 
             <a 
               href={STORE_INFO.instagramUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 transition-all text-xs font-medium text-white shadow-sm"
-              title="Instagram Oficial"
+              className="w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 hover:border-pink-400/50 flex items-center justify-center transition-all duration-200 text-white shadow-sm hover:scale-105 active:scale-95 group"
+              title={`Instagram: ${STORE_INFO.instagramUser}`}
+              aria-label={`Instagram: ${STORE_INFO.instagramUser}`}
             >
-              <i className="fa-brands fa-instagram text-pink-400 text-sm" aria-hidden="true"></i>
-              <span>{STORE_INFO.instagramUser}</span>
+              <i className="fa-brands fa-instagram text-pink-400 text-base group-hover:scale-110 transition-transform" aria-hidden="true"></i>
             </a>
           </div>
         </div>
