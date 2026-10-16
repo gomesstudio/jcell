@@ -59,15 +59,15 @@ export const HeroSection: React.FC = () => {
           Cobrindo toda a seção com background-size: cover e produtos concentrados no lado direito
       */}
       <motion.div 
-        initial={{ opacity: 0.85, scale: 1.02 }}
+        initial={{ opacity: 0.95, scale: 1.01 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
         style={{
-          backgroundColor: '#D7192D',
+          backgroundColor: '#850A19',
           backgroundImage: `url(${IMAGES.heroBg})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'right center',
+          backgroundPosition: '62% 72%',
           backgroundRepeat: 'no-repeat',
         }}
         aria-hidden="true"
@@ -85,7 +85,7 @@ export const HeroSection: React.FC = () => {
               }
             }
           }}
-          className={`w-full h-full object-cover object-[75%_center] xs:object-[80%_center] sm:object-[84%_center] lg:object-right transition-opacity duration-500 ${
+          className={`w-full h-full object-cover object-[62%_72%] xs:object-[64%_72%] sm:object-[82%_center] lg:object-right transition-opacity duration-500 ${
             bgLoaded ? 'opacity-100' : 'opacity-90'
           }`}
           loading="eager"
@@ -93,47 +93,35 @@ export const HeroSection: React.FC = () => {
         />
       </motion.div>
 
-      {/* 2. CAMADA DE SOBREPOSIÇÃO INDEPENDENTE COM DEGRADÊ EM VERMELHO VIVO DA MARCA (#D7192D)
-          Posicionada estritamente entre a imagem de fundo (z-0) e o conteúdo da Hero (z-10).
-          Começa 100% sólido (#D7192D) cobrindo perfeitamente a área da logo e dos botões,
-          com transição gradual que valoriza a visualização em mobile e desktop.
+      {/* 2. CAMADA DE SOBREPOSIÇÃO INDEPENDENTE COM GRADIENTE DE OPACIDADE EM TONALIDADE VERMELHA DA ESQUERDA PARA A DIREITA
+          Garante excelente contraste para a logo e chamadas à esquerda, desvanecendo suavemente em opacidade
+          em direção à direita para exibir a imagem de fundo com total nitidez fotográfica.
       */}
       <div 
         className="absolute inset-0 pointer-events-none select-none z-[1]" 
         aria-hidden="true"
       >
-        {/* Degradê horizontal para Desktop e Tablet */}
+        {/* Efeito de opacidade gradiente em vermelho da esquerda para a direita (Desktop e Tablet) */}
         <div 
           className="absolute inset-0 hidden sm:block"
           style={{
-            background: 'linear-gradient(to right, #E7192D 0%, #E7192D 42%, rgba(231, 25, 45, 0.96) 50%, rgba(231, 25, 45, 0.82) 60%, rgba(231, 25, 45, 0.58) 72%, rgba(231, 25, 45, 0.28) 84%, rgba(231, 25, 45, 0.08) 94%, transparent 100%)'
+            background: 'linear-gradient(to right, #D7192D 0%, rgba(215, 25, 45, 0.94) 28%, rgba(215, 25, 45, 0.72) 48%, rgba(200, 16, 36, 0.35) 68%, rgba(133, 10, 25, 0.10) 84%, transparent 95%)'
           }}
         />
 
-        {/* Degradê vertical otimizado para Mobile:
-            - Sólido 100% cobrindo a logo e os botões
-            - Transição suave que revela sutilezas da imagem tecnológica sem ofuscar textos
-        */}
+        {/* Efeito de opacidade gradiente em vermelho da esquerda para a direita (Mobile) */}
         <div 
           className="absolute inset-0 sm:hidden"
           style={{
-            background: 'linear-gradient(to bottom, #E7192D 0%, #E7192D 50%, rgba(231, 25, 45, 0.92) 62%, rgba(231, 25, 45, 0.65) 78%, rgba(231, 25, 45, 0.3) 90%, transparent 100%)'
+            background: 'linear-gradient(to right, rgba(215, 25, 45, 0.94) 0%, rgba(215, 25, 45, 0.82) 35%, rgba(200, 16, 36, 0.50) 65%, rgba(133, 10, 25, 0.15) 85%, transparent 100%)'
           }}
         />
 
-        {/* Transição vertical de continuidade superior com o Navbar */}
+        {/* Transição vertical sutil no topo para integração com o Navbar */}
         <div 
           className="absolute inset-x-0 top-0 h-24 pointer-events-none"
           style={{
-            background: 'linear-gradient(to bottom, rgba(200, 16, 36, 0.4) 0%, rgba(231, 25, 45, 0.1) 60%, transparent 100%)'
-          }}
-        />
-
-        {/* Realce luminoso suave e vivo focado na área da logo */}
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse at 20% 40%, rgba(255, 75, 95, 0.25) 0%, rgba(231, 25, 45, 0) 65%)'
+            background: 'linear-gradient(to bottom, rgba(160, 12, 28, 0.35) 0%, transparent 100%)'
           }}
         />
 
@@ -141,7 +129,7 @@ export const HeroSection: React.FC = () => {
         <div 
           className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
           style={{
-            background: 'linear-gradient(to bottom, transparent 0%, rgba(231, 25, 45, 0.35) 40%, rgba(200, 16, 36, 0.85) 80%, #C81024 100%)'
+            background: 'linear-gradient(to bottom, transparent 0%, rgba(160, 12, 28, 0.40) 50%, #C81024 100%)'
           }}
         />
       </div>
@@ -157,18 +145,42 @@ export const HeroSection: React.FC = () => {
           {/* H1 Acessível para SEO e Leitores de Tela */}
           <h1 className="sr-only">J&apos;Cell Acessórios e Variedades - Nanuque - MG</h1>
 
-          {/* Logo Oficial J'Cell Nítida e Perfeitamente Sincronizada com os Botões */}
+          {/* Logo Oficial J'Cell Nítida com Efeito de Profundidade Premium */}
           <motion.div 
             variants={itemVariants}
-            className="w-full max-w-[290px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mb-6 sm:mb-8 will-change-transform flex justify-center sm:justify-start mx-auto sm:mx-0"
+            className="relative w-full max-w-[290px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mb-6 sm:mb-8 will-change-transform flex justify-center sm:justify-start mx-auto sm:mx-0 text-[#FFFFFF] group/logo"
+            style={{ color: '#FFFFFF' }}
           >
-            <ImageWithFallback
-              src={IMAGES.logoHero}
-              fallbackSrc={IMAGES.cdn.logoHero}
-              alt="J'Cell Acessórios e Variedades"
-              className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-none mx-auto sm:mx-0"
-              fallbackLabel="J'Cell Acessórios e Variedades"
+            {/* 1. Halo Óptico de Luz Ambiente Traseiro (Efeito de Profundidade Tridimensional) */}
+            <div 
+              className="absolute -inset-4 sm:-inset-8 rounded-full pointer-events-none select-none opacity-85 transition-opacity duration-700 group-hover/logo:opacity-100"
+              style={{
+                background: 'radial-gradient(ellipse 65% 55% at 45% 50%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 75, 95, 0.18) 35%, rgba(133, 10, 25, 0.25) 65%, transparent 80%)',
+                filter: 'blur(16px)',
+              }}
+              aria-hidden="true"
             />
+
+            {/* 2. Logotipo com Efeito de Escala Suave (scale-105), Sombra Projetada Acentuada e Brilho de Destaque */}
+            <div className="logo-hero-container relative z-10 w-full flex justify-center sm:justify-start transition-all duration-500 ease-out hover:scale-105 cursor-pointer group/logobox">
+              {/* Brilho radial luminoso de destaque para a logo */}
+              <div 
+                className="absolute inset-0 pointer-events-none -z-10 rounded-full opacity-65 group-hover/logobox:opacity-100 transition-all duration-500 scale-95 group-hover/logobox:scale-110"
+                style={{
+                  background: 'radial-gradient(ellipse 70% 60% at 48% 50%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 95, 115, 0.30) 40%, transparent 75%)',
+                  filter: 'blur(22px)',
+                }}
+                aria-hidden="true"
+              />
+
+              <ImageWithFallback
+                src={IMAGES.logoHero}
+                fallbackSrc={IMAGES.cdn.logoHero}
+                alt="J'Cell Acessórios e Variedades"
+                className="logo-hero-img w-full h-auto object-contain select-none pointer-events-none mx-auto sm:mx-0"
+                fallbackLabel="J'Cell Acessórios e Variedades"
+              />
+            </div>
           </motion.div>
 
           {/* Botões de Ação: Fale Conosco (WhatsApp) e Instagram pareados com o centro da logo */}
@@ -177,16 +189,17 @@ export const HeroSection: React.FC = () => {
             className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full max-w-[290px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mx-auto sm:mx-0"
           >
             <motion.a
-              whileHover={{ scale: 1.025, y: -1 }}
-              whileTap={{ scale: 0.975 }}
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
               href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Gostaria%20de%20um%20atendimento%20na%20J%27Cell.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto sm:min-w-[190px] inline-flex items-center justify-center gap-2.5 bg-white text-[#C81024] hover:bg-neutral-100 font-bold text-sm sm:text-[15px] px-6 py-3 min-h-[48px] rounded-full transition-all duration-200 shadow-md hover:shadow-xl text-decoration-none active:scale-98"
+              className="w-full sm:w-auto sm:min-w-[200px] inline-flex items-center justify-center gap-3 bg-white hover:bg-neutral-50 text-[#171313] font-heading font-extrabold text-sm sm:text-[15px] px-7 py-3.5 min-h-[50px] rounded-full transition-all duration-300 shadow-[0_14px_35px_-4px_rgba(0,0,0,0.5),0_6px_14px_-2px_rgba(0,0,0,0.25)] hover:shadow-[0_20px_45px_-4px_rgba(0,0,0,0.65)] text-decoration-none border border-white/95 group/btn cursor-pointer"
             >
-              <i className="fa-brands fa-whatsapp text-lg text-[#C81024]" aria-hidden="true"></i>
-              <span>Fale Conosco</span>
+              <i className="fa-brands fa-whatsapp text-xl text-[#15803D] transition-transform duration-300 group-hover/btn:scale-110" aria-hidden="true"></i>
+              <span className="tracking-tight">Fale Conosco</span>
+              <i className="fa-solid fa-arrow-right text-xs text-[#C81024] transition-transform duration-300 group-hover/btn:translate-x-1" aria-hidden="true"></i>
             </motion.a>
 
             <motion.a

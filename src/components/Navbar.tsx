@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { STORE_INFO, IMAGES } from '../data/mockData';
 import { ImageWithFallback } from './ImageWithFallback';
-import { ShareModal } from './ShareModal';
+
+// Code-splitting do modal de compartilhamento, baixado apenas sob demanda
+const ShareModal = lazy(() => import('./ShareModal').then(m => ({ default: m.ShareModal })));
 
 interface NavItem {
   label: string;
@@ -237,11 +239,15 @@ export const Navbar: React.FC = () => {
         )}
       </nav>
 
-      {/* Modal Interativo de Compartilhamento */}
-      <ShareModal 
-        isOpen={isShareOpen} 
-        onClose={() => setIsShareOpen(false)} 
-      />
+      {/* Modal Interativo de Compartilhamento carregado sob demanda */}
+      {isShareOpen && (
+        <Suspense fallback={null}>
+          <ShareModal 
+            isOpen={isShareOpen} 
+            onClose={() => setIsShareOpen(false)} 
+          />
+        </Suspense>
+      )}
     </header>
   );
 };

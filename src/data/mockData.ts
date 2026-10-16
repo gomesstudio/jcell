@@ -124,31 +124,41 @@ export const WORKSHOP_SERVICES: WorkshopService[] = [
   {
     icon: "fa-mobile-screen",
     title: "Troca de Tela",
-    description: "Substituição de display com qualidade e segurança.",
+    description: "Substituição de telas danificadas, trincadas ou com falhas de funcionamento.",
   },
   {
     icon: "fa-battery-full",
     title: "Troca de Bateria",
-    description: "Mais autonomia para o seu dispositivo.",
+    description: "Substituição de baterias com desgaste, baixa autonomia ou problemas de carregamento relacionados à bateria.",
   },
   {
     icon: "fa-plug",
-    title: "Reparo de Conector",
-    description: "Reparo de entrada com mais certeza no carregamento.",
+    title: "Troca de Conector de Carga",
+    description: "Reparo de problemas no conector que impedem ou dificultam o carregamento do aparelho.",
+  },
+  {
+    icon: "fa-microchip",
+    title: "Reparo da Placa de Carga",
+    description: "Diagnóstico e reparo de falhas na placa responsável pelo carregamento, conforme o modelo do aparelho.",
+  },
+  {
+    icon: "fa-camera",
+    title: "Troca do Vidro da Câmera",
+    description: "Substituição do vidro de proteção da câmera quando está quebrado ou danificado.",
+  },
+  {
+    icon: "fa-droplet",
+    title: "Desoxidação de Aparelhos",
+    description: "Procedimentos técnicos para tratar danos causados por líquidos e oxidação, após avaliação do aparelho.",
+  },
+  {
+    icon: "fa-lock-open",
+    title: "Desbloqueio de Conta Google",
+    description: "Atendimento para problemas de acesso à conta Google, conforme o modelo e a situação do aparelho, mediante comprovação de propriedade quando necessária.",
   },
   {
     icon: "fa-code",
-    title: "Problemas de Software",
-    description: "Correção de travamentos, reinicialização e atualizações.",
-  },
-  {
-    icon: "fa-shield-halved",
-    title: "Aplicação de Hidrogel",
-    description: "Proteção extra para a tela, com alta resistência.",
-  },
-  {
-    icon: "fa-gear",
-    title: "Limpeza e Manutenção",
-    description: "Mais desempenho e vida útil para o seu aparelho.",
+    title: "Restauração de Software",
+    description: "Correção de falhas de sistema e restauração do aparelho para solucionar problemas de funcionamento.",
   },
 ];

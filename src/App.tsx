@@ -3,17 +3,19 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
-import { AboutSection } from './components/AboutSection';
-import { ProductsSection } from './components/ProductsSection';
-import { FilmSection } from './components/FilmSection';
-import { WorkshopSection } from './components/WorkshopSection';
-import { VideoSection } from './components/VideoSection';
-import { LocationSection } from './components/LocationSection';
-import { Footer } from './components/Footer';
-import { WhatsAppFloating } from './components/WhatsAppFloating';
+
+// Code-splitting dos componentes principais abaixo da dobra (Below-the-fold) para reduzir o bundle inicial
+const AboutSection = lazy(() => import('./components/AboutSection').then(m => ({ default: m.AboutSection })));
+const ProductsSection = lazy(() => import('./components/ProductsSection').then(m => ({ default: m.ProductsSection })));
+const FilmSection = lazy(() => import('./components/FilmSection').then(m => ({ default: m.FilmSection })));
+const WorkshopSection = lazy(() => import('./components/WorkshopSection').then(m => ({ default: m.WorkshopSection })));
+const VideoSection = lazy(() => import('./components/VideoSection').then(m => ({ default: m.VideoSection })));
+const LocationSection = lazy(() => import('./components/LocationSection').then(m => ({ default: m.LocationSection })));
+const Footer = lazy(() => import('./components/Footer').then(m => ({ default: m.Footer })));
+const WhatsAppFloating = lazy(() => import('./components/WhatsAppFloating').then(m => ({ default: m.WhatsAppFloating })));
 
 export default function App() {
   return (
@@ -75,45 +77,61 @@ export default function App() {
         <div 
           className="absolute inset-0 bg-radial-vignette opacity-20"
           style={{
-            background: 'radial-gradient(circle at 50% 50%, transparent 50%, rgba(23, 19, 19, 0.45) 100%)'
+            background: 'radial-gradient(circle at 50% 50%, transparent 50%, rgba(231, 19, 19, 0.45) 100%)'
           }}
         />
       </div>
 
       {/* Conteúdo Interativo Sobreposto com Nitidez Máxima */}
       <div className="relative z-10 flex flex-col flex-grow">
-        {/* Cabeçalho Premium & Navegação */}
+        {/* Cabeçalho Premium & Navegação (Carregado Imediatamente - Acima da Dobra) */}
         <Navbar />
 
-        {/* Conteúdo Principal com Continuidade Infinita */}
+        {/* Conteúdo Principal com Code-Splitting Sob Demanda */}
         <main className="flex-grow">
-          {/* 1. Hero: Vermelho da Marca e Imagem Tecnológica */}
+          {/* 1. Hero: Vermelho da Marca e Imagem Tecnológica (Carregado Imediatamente - LCP) */}
           <HeroSection />
 
-          {/* 2. Sobre: Continuidade Fluida */}
-          <AboutSection />
+          {/* 2. Sobre: Continuidade Fluida com Lazy Loading */}
+          <Suspense fallback={<div className="min-h-[420px] w-full" aria-hidden="true" />}>
+            <AboutSection />
+          </Suspense>
 
           {/* 3. Produtos: Vitrine com Alto Contraste */}
-          <ProductsSection />
+          <Suspense fallback={<div className="min-h-[480px] w-full" aria-hidden="true" />}>
+            <ProductsSection />
+          </Suspense>
 
           {/* 4. Película de Hidrogel: Aplicação Especializada */}
-          <FilmSection />
+          <Suspense fallback={<div className="min-h-[440px] w-full" aria-hidden="true" />}>
+            <FilmSection />
+          </Suspense>
 
-          {/* 5. Oficina & Assistência Técnica: Fundo Escuro Técnico com Transição Orgânica */}
-          <WorkshopSection />
+          {/* 5. Oficina & Assistência Técnica: 8 Serviços Interativos com Detalhes Expansíveis */}
+          <Suspense fallback={<div className="min-h-[500px] w-full" aria-hidden="true" />}>
+            <WorkshopSection />
+          </Suspense>
 
           {/* 6. Conheça a Loja (Vídeo): Continuidade Fluida */}
-          <VideoSection />
+          <Suspense fallback={<div className="min-h-[380px] w-full" aria-hidden="true" />}>
+            <VideoSection />
+          </Suspense>
 
           {/* 7. Localização Oficial: Continuidade Fluida */}
-          <LocationSection />
+          <Suspense fallback={<div className="min-h-[400px] w-full" aria-hidden="true" />}>
+            <LocationSection />
+          </Suspense>
         </main>
 
-        {/* Rodapé Integrado */}
-        <Footer />
+        {/* Rodapé Integrado com Lazy Loading */}
+        <Suspense fallback={<div className="min-h-[160px] w-full" aria-hidden="true" />}>
+          <Footer />
+        </Suspense>
 
-        {/* Botão Flutuante do WhatsApp */}
-        <WhatsAppFloating />
+        {/* Botão Flutuante do WhatsApp Carregado Assincronamente */}
+        <Suspense fallback={null}>
+          <WhatsAppFloating />
+        </Suspense>
       </div>
     </div>
   );

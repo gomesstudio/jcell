@@ -153,7 +153,7 @@ export const AboutSection: React.FC = () => {
                         <i className="fa-solid fa-headphones text-xs sm:text-sm text-white"></i>
                       </div>
                       <h3 className="font-heading font-bold text-sm text-white m-0 tracking-tight">
-                        Acessórios
+                        Acessórios & Variedades
                       </h3>
                     </div>
                     <p className="text-xs text-[#D2CACC] leading-relaxed m-0">

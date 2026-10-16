@@ -46,7 +46,8 @@ export const ProductsSection: React.FC = () => {
       if (targetItem) {
         const containerWidth = container.clientWidth;
         const itemWidth = targetItem.offsetWidth;
-        const scrollPos = targetItem.offsetLeft - (containerWidth - itemWidth) / 2;
+        const itemLeft = targetItem.offsetLeft - container.offsetLeft;
+        const scrollPos = itemLeft - (containerWidth - itemWidth) / 2;
         container.scrollTo({
           left: Math.max(0, scrollPos),
           behavior: 'smooth'
@@ -66,7 +67,8 @@ export const ProductsSection: React.FC = () => {
       let closestIndex = 0;
       let minDiff = Infinity;
       items.forEach((item, idx) => {
-        const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+        const itemLeft = item.offsetLeft - container.offsetLeft;
+        const itemCenter = itemLeft + item.offsetWidth / 2;
         const diff = Math.abs(itemCenter - containerCenter);
         if (diff < minDiff) {
           minDiff = diff;
@@ -136,38 +138,38 @@ export const ProductsSection: React.FC = () => {
         </ScrollReveal>
 
         {/* 2. Área do Carrossel com Setas Interativas Flutuantes e Scroll Reveal */}
-        <ScrollReveal direction="up" distance={24} duration={0.8} delay={0.1} className="relative group/carousel">
-          {/* Seta clicável esquerda flutuante (Mobile e Tablet) */}
+        <ScrollReveal direction="up" distance={24} duration={0.8} delay={0.1} className="relative group/carousel max-w-[320px] xs:max-w-[360px] sm:max-w-none mx-auto">
+          {/* Seta clicável esquerda flutuante */}
           <button
             type="button"
             onClick={scrollPrev}
             aria-label="Voltar para o produto anterior"
-            className="absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/70 hover:bg-[#D7192D] text-white flex items-center justify-center backdrop-blur-md border border-white/30 shadow-2xl transition-all duration-200 active:scale-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
+            className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-[#C81024] text-white flex items-center justify-center backdrop-blur-md border border-white/30 shadow-2xl transition-all duration-200 active:scale-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
           >
             <i className="fa-solid fa-chevron-left text-sm" aria-hidden="true"></i>
           </button>
 
-          {/* Seta clicável direita flutuante (Mobile e Tablet) */}
+          {/* Seta clicável direita flutuante */}
           <button
             type="button"
             onClick={scrollNext}
             aria-label="Avançar para o próximo produto"
-            className="absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/70 hover:bg-[#D7192D] text-white flex items-center justify-center backdrop-blur-md border border-white/30 shadow-2xl transition-all duration-200 active:scale-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
+            className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-[#C81024] text-white flex items-center justify-center backdrop-blur-md border border-white/30 shadow-2xl transition-all duration-200 active:scale-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
           >
             <i className="fa-solid fa-chevron-right text-sm" aria-hidden="true"></i>
           </button>
 
-          {/* Carrossel Horizontal: Imagem inteira com ação Consultar sobreposta */}
+          {/* Carrossel Horizontal: 1 item por vez no mobile (sem quebra de imagem), 2 no tablet e 4 no desktop */}
           <div
             ref={carouselRef}
-            className="carousel-container gap-4 sm:gap-6 py-2 px-1 pb-4"
+            className="carousel-container relative gap-4 sm:gap-6 py-2 px-0 sm:px-1 pb-4"
             tabIndex={0}
             aria-label="Carrossel de categorias de produtos"
           >
             {CATALOG_ITEMS.map((item) => (
               <div
                 key={item.id}
-                className="carousel-item-snap w-[80vw] max-w-[310px] sm:w-[45%] lg:w-[calc(25%-18px)] flex flex-col relative aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#222020] group select-none transition-all duration-300 hover:border-[#E7192D]/60 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(0,0,0,0.85)]"
+                className="carousel-item-snap w-full min-w-full sm:min-w-0 sm:w-[45%] lg:w-[calc(25%-18px)] flex flex-col relative aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.65)] bg-[#222020] group select-none transition-all duration-300 hover:border-[#E7192D]/60 hover:-translate-y-1 hover:shadow-[0_25px_60px_rgba(0,0,0,0.85)]"
               >
                 {/* 1. Imagem Inteira clicável para ampliação */}
                 <div 
@@ -244,39 +246,29 @@ export const ProductsSection: React.FC = () => {
             ))}
           </div>
 
-          {/* 3. Controles e Indicadores Mobile com Setas Clicáveis */}
-          <div className="flex sm:hidden items-center justify-center gap-3 mt-4" aria-label="Controles do carrossel mobile">
-            <button
-              type="button"
-              onClick={scrollPrev}
-              aria-label="Voltar produto"
-              className="w-10 h-10 rounded-full bg-white/10 active:bg-white/30 text-white flex items-center justify-center border border-white/25 backdrop-blur-md shadow-md cursor-pointer"
-            >
-              <i className="fa-solid fa-chevron-left text-xs" aria-hidden="true"></i>
-            </button>
-
-            {/* Pontos de paginação interativos */}
-            <div className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-black/50 backdrop-blur-md border border-white/15">
-              {CATALOG_ITEMS.map((_, idx) => (
+          {/* 3. Indicadores de Paginação no Mobile (1 produto por vez com navegação direta) */}
+          <div className="flex sm:hidden items-center justify-between mt-3 px-1">
+            <span className="text-[11px] font-medium text-white/70">
+              Deslize ou toque nas setas
+            </span>
+            <div className="flex items-center gap-1.5">
+              {CATALOG_ITEMS.map((item, idx) => (
                 <button
-                  key={idx}
+                  key={item.id}
+                  type="button"
                   onClick={() => scrollToItem(idx)}
-                  aria-label={`Ir para produto ${idx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    activeIndex === idx ? 'w-6 bg-white' : 'w-2 bg-white/40 hover:bg-white/70'
+                  aria-label={`Ver ${item.title}`}
+                  className={`transition-all duration-300 rounded-full cursor-pointer ${
+                    activeIndex === idx
+                      ? 'w-6 h-2 bg-[#E7192D] shadow-sm shadow-[#E7192D]/70'
+                      : 'w-2 h-2 bg-white/40 hover:bg-white/70'
                   }`}
                 />
               ))}
             </div>
-
-            <button
-              type="button"
-              onClick={scrollNext}
-              aria-label="Avançar produto"
-              className="w-10 h-10 rounded-full bg-white/10 active:bg-white/30 text-white flex items-center justify-center border border-white/25 backdrop-blur-md shadow-md cursor-pointer"
-            >
-              <i className="fa-solid fa-chevron-right text-xs" aria-hidden="true"></i>
-            </button>
+            <span className="text-xs font-semibold text-white/90 tabular-nums">
+              {activeIndex + 1} / {CATALOG_ITEMS.length}
+            </span>
           </div>
         </ScrollReveal>
 

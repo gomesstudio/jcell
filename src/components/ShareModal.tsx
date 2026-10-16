@@ -79,8 +79,8 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
     {
       name: 'WhatsApp',
       icon: 'fa-brands fa-whatsapp',
-      color: 'bg-[#25D366] hover:bg-[#20bd5a] text-white',
-      textColor: 'text-[#25D366]',
+      color: 'bg-[#15803D] hover:bg-[#166534] text-white',
+      textColor: 'text-[#15803D]',
       href: `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`,
       action: null,
     },
@@ -196,7 +196,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
               readOnly
               value={shareUrl}
               aria-label="Link do site para copiar"
-              className="bg-transparent text-xs sm:text-sm text-white/90 flex-1 outline-none truncate selection:bg-[#E7192D] selection:text-white"
+              className="bg-transparent text-xs sm:text-sm text-white/90 flex-1 outline-none truncate selection:bg-[#C81024] selection:text-white"
             />
             <button
               type="button"
@@ -204,7 +204,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({ isOpen, onClose }) => {
               className={`shrink-0 flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-bold transition-all ${
                 copied
                   ? 'bg-emerald-600 text-white'
-                  : 'bg-[#E7192D] hover:bg-[#C81024] text-white shadow-sm'
+                  : 'bg-[#C81024] hover:bg-[#A30D20] text-white shadow-sm'
               }`}
             >
               <i

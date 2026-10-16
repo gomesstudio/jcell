@@ -5,6 +5,28 @@ import { ScrollReveal, ScrollRevealStagger, ScrollRevealItem } from './ScrollRev
 
 export const WorkshopSection: React.FC = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [expandedServices, setExpandedServices] = useState<Record<number, boolean>>({});
+
+  const toggleService = (index: number) => {
+    setExpandedServices((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+
+  const areAllExpanded = WORKSHOP_SERVICES.every((_, idx) => !!expandedServices[idx]);
+
+  const toggleAllServices = () => {
+    if (areAllExpanded) {
+      setExpandedServices({});
+    } else {
+      const all: Record<number, boolean> = {};
+      WORKSHOP_SERVICES.forEach((_, idx) => {
+        all[idx] = true;
+      });
+      setExpandedServices(all);
+    }
+  };
 
   // Fechar modal com tecla Esc e travar rolagem do body quando aberto
   useEffect(() => {
@@ -133,9 +155,9 @@ export const WorkshopSection: React.FC = () => {
                 Assistência técnica para celulares e tablets
               </h2>
 
-              {/* 3. Subtítulo */}
+              {/* 3. Subtítulo com instrução de clique */}
               <p className="text-[#D2CACC] text-sm sm:text-base leading-relaxed max-w-xl mb-6 sm:mb-7 text-center sm:text-left mx-auto sm:mx-0">
-                Diagnóstico e reparo realizados com técnicos especializados.
+                Diagnóstico e reparo realizados com técnicos especializados. Toque em qualquer serviço para ver a descrição completa.
               </p>
             </ScrollReveal>
 
@@ -144,31 +166,100 @@ export const WorkshopSection: React.FC = () => {
               {renderPromotionalArt(true)}
             </div>
 
-            {/* 4. Grade dos Seis Serviços em cards escuros #222020 com Stagger Reveal */}
-            <ScrollRevealStagger staggerDelay={0.10} delayChildren={0.1} className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 mb-7 sm:mb-8">
-              {WORKSHOP_SERVICES.map((serv, index) => (
-                <ScrollRevealItem key={index}>
-                  <div className="h-full flex items-center gap-3.5 p-4 rounded-2xl bg-[#222020]/80 hover:bg-[#222020] border border-white/15 hover:border-white/35 transition-all duration-300 shadow-md hover:shadow-xl shadow-black/30 hover:-translate-y-0.5 group">
-                    {/* Ícone Quadrado Vermelho da Marca com Alto Contraste */}
-                    <div 
-                      className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#C81024] border border-white/20 text-white flex items-center justify-center shrink-0 shadow-md shadow-black/30 transition-transform duration-300 group-hover:scale-105"
-                      aria-hidden="true"
+            {/* Cabeçalho da Grade com Contador e Controle de Expansão */}
+            <div className="flex items-center justify-between mb-3 px-1 text-xs text-white/80">
+              <span className="font-semibold uppercase tracking-wider text-[11px] text-white/90">
+                {WORKSHOP_SERVICES.length} Serviços Disponíveis
+              </span>
+              <button
+                type="button"
+                onClick={toggleAllServices}
+                className="text-xs font-medium text-white/80 hover:text-white underline decoration-white/40 hover:decoration-white transition-all cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-white rounded px-1"
+                aria-label={areAllExpanded ? 'Recolher todas as descrições' : 'Expandir todas as descrições'}
+              >
+                {areAllExpanded ? 'Recolher todas' : 'Ver todas as descrições'}
+              </button>
+            </div>
+
+            {/* 4. Grade dos Oito Serviços em cards escuros #222020 com Stagger Reveal e Acordeão Interativo */}
+            <ScrollRevealStagger staggerDelay={0.08} delayChildren={0.1} className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 mb-7 sm:mb-8">
+              {WORKSHOP_SERVICES.map((serv, index) => {
+                const isExpanded = !!expandedServices[index];
+                return (
+                  <ScrollRevealItem key={index}>
+                    <div
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={isExpanded}
+                      aria-controls={`service-desc-${index}`}
+                      onClick={() => toggleService(index)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          toggleService(index);
+                        }
+                      }}
+                      className={`w-full p-4 rounded-2xl transition-all duration-300 shadow-md hover:shadow-xl shadow-black/30 hover:-translate-y-0.5 group cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white select-none ${
+                        isExpanded
+                          ? 'bg-[#222020] border border-[#C81024]/70 shadow-lg shadow-black/40 ring-1 ring-[#C81024]/40'
+                          : 'bg-[#222020]/80 hover:bg-[#222020] border border-white/15 hover:border-white/35'
+                      }`}
                     >
-                      <i className={`fa-solid ${serv.icon} text-lg sm:text-xl text-white`}></i>
+                      {/* Topo do Card: Ícone, Título e Indicador de Expansão */}
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-3.5 min-w-0 flex-1">
+                          {/* Ícone Quadrado Vermelho da Marca com Alto Contraste */}
+                          <div 
+                            className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#C81024] border border-white/20 text-white flex items-center justify-center shrink-0 shadow-md shadow-black/30 transition-transform duration-300 group-hover:scale-105"
+                            aria-hidden="true"
+                          >
+                            <i className={`fa-solid ${serv.icon} text-lg sm:text-xl text-white`}></i>
+                          </div>
+                          
+                          {/* Título do Serviço e Dica de Ação */}
+                          <div className="min-w-0 flex-1">
+                            <h3 className="font-heading font-bold text-sm sm:text-[15px] text-white mb-0.5 leading-snug tracking-tight">
+                              {serv.title}
+                            </h3>
+                            {!isExpanded && (
+                              <span className="text-[11px] text-white/55 group-hover:text-white/85 transition-colors inline-flex items-center gap-1">
+                                <span>Ver descrição</span>
+                                <i className="fa-solid fa-chevron-right text-[9px] opacity-70 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Seta Chevron Indicadora de Estado */}
+                        <div 
+                          className={`w-7 h-7 rounded-full flex items-center justify-center transition-all shrink-0 ${
+                            isExpanded 
+                              ? 'bg-[#C81024] text-white shadow-sm' 
+                              : 'bg-white/10 group-hover:bg-white/20 text-white/70 group-hover:text-white'
+                          }`}
+                          aria-hidden="true"
+                        >
+                          <i className={`fa-solid fa-chevron-down text-xs transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} />
+                        </div>
+                      </div>
+
+                      {/* Breve Descrição que Aparece Suavemente ao Clicar */}
+                      <div 
+                        id={`service-desc-${index}`}
+                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                          isExpanded 
+                            ? 'max-h-48 opacity-100 mt-3 pt-3 border-t border-white/10' 
+                            : 'max-h-0 opacity-0 pointer-events-none'
+                        }`}
+                      >
+                        <p className="text-xs sm:text-[13px] text-[#D2CACC] leading-relaxed m-0 font-normal">
+                          {serv.description}
+                        </p>
+                      </div>
                     </div>
-                    
-                    {/* Textos: Título e Descrição */}
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-heading font-bold text-sm sm:text-[15px] text-white mb-0.5 leading-snug tracking-tight">
-                        {serv.title}
-                      </h3>
-                      <p className="text-xs text-[#D2CACC] leading-relaxed m-0">
-                        {serv.description}
-                      </p>
-                    </div>
-                  </div>
-                </ScrollRevealItem>
-              ))}
+                  </ScrollRevealItem>
+                );
+              })}
             </ScrollRevealStagger>
 
             {/* 5 e 6. Botão de Conversão "Pedir Orçamento" com Alto Contraste WCAG (10.3:1) e Texto Auxiliar com Scroll Reveal */}
