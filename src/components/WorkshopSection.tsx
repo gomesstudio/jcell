@@ -169,7 +169,7 @@ export const WorkshopSection: React.FC = () => {
             {/* Cabeçalho da Grade com Contador e Controle de Expansão */}
             <div className="flex items-center justify-between mb-3 px-1 text-xs text-white/80">
               <span className="font-semibold uppercase tracking-wider text-[11px] text-white/90">
-                {WORKSHOP_SERVICES.length} Serviços Disponíveis
+                Serviços Disponíveis
               </span>
               <button
                 type="button"
