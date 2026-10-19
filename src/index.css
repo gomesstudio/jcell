@@ -148,14 +148,10 @@
   border-color: rgba(231, 25, 45, 0.5);
 }
 
-/* Efeito de Escala, Sombra Projetada Acentuada e Brilho na Logo */
+/* Logo Hero em máxima qualidade de resolução (sem brilho e sem sombra) */
 .logo-hero-img {
-  filter: brightness(0) invert(1) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 16px rgba(255, 255, 255, 0.50));
-  transition: filter 500ms cubic-bezier(0.16, 1, 0.3, 1), transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.logo-hero-container:hover .logo-hero-img {
-  filter: brightness(0) invert(1) drop-shadow(0 22px 45px rgba(0, 0, 0, 0.80)) drop-shadow(0 0 32px rgba(255, 255, 255, 0.95));
+  filter: brightness(0) invert(1);
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Micro animations respecting reduced motion */

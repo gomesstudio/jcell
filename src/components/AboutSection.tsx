@@ -25,6 +25,62 @@ export const AboutSection: React.FC = () => {
     };
   }, [isFullscreen]);
 
+  // Componente da Foto da Fachada (Reutilizável para Desktop e Mobile)
+  const renderFachadaPhoto = (isMobile = false) => (
+    <div 
+      onClick={() => setIsFullscreen(true)}
+      className={`relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl w-full ${
+        isMobile 
+          ? 'aspect-[4/3] xs:aspect-[16/11] my-4 xs:my-5 shadow-xl' 
+          : 'h-full min-h-[340px] xs:min-h-[400px] sm:min-h-[460px] md:min-h-full flex-1'
+      } group bg-[#222020] cursor-pointer transition-all duration-500 hover:border-white/40 hover:shadow-[0_25px_60px_rgba(0,0,0,0.7)]`}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setIsFullscreen(true);
+        }
+      }}
+      aria-label="Ver foto da fachada da loja em tela cheia"
+      title="Clique para ampliar a foto da fachada"
+    >
+      <ImageWithFallback
+        src={IMAGES.fachada}
+        fallbackSrc={IMAGES.cdn.fachada}
+        alt="Fachada oficial da loja J'Cell Acessórios e Variedades em Nanuque - MG"
+        className="w-full h-full absolute inset-0 object-cover object-center transition-transform duration-700 group-hover:scale-105"
+        loading="lazy"
+        decoding="async"
+        fallbackLabel="Fachada J'Cell Nanuque"
+      />
+
+      {/* Degradê sutil cinematográfico */}
+      <div 
+        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* Selos informativos elegantes na base */}
+      <div className="absolute bottom-3 xs:bottom-4 left-3 xs:left-4 right-3 xs:right-4 z-10 flex items-center justify-between pointer-events-none">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/25 text-[11px] xs:text-xs font-semibold text-white shadow-lg">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#E7192D] animate-pulse"></span>
+          <span>Nossa Loja em Nanuque - MG</span>
+        </div>
+        <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/25 text-xs text-white font-medium">
+          <i className="fa-solid fa-map-pin text-[#FF5C6C] text-xs" aria-hidden="true"></i>
+          <span>Calçadão</span>
+        </div>
+      </div>
+
+      {/* Dica de clique para ampliar no hover */}
+      <div className="absolute top-3 xs:top-4 right-3 xs:right-4 z-10 px-2.5 py-1 xs:px-3 xs:py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/25 text-[11px] xs:text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none flex items-center gap-1.5 shadow-lg transform translate-y-1 group-hover:translate-y-0">
+        <i className="fa-solid fa-expand text-xs" aria-hidden="true"></i>
+        <span>Ampliar</span>
+      </div>
+    </div>
+  );
+
   return (
     <section 
       id="sobre" 
@@ -51,78 +107,40 @@ export const AboutSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* DUAS COLUNAS LADO A LADO NO DESKTOP (>= 768px) E EMPILHADO NO MOBILE (< 768px) */}
+        {/* DUAS COLUNAS LADO A LADO NO DESKTOP (>= 768px) E ORDEM RESPONSIVA OTIMIZADA NO MOBILE (< 768px) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14 items-stretch">
           
-          {/* COLUNA ESQUERDA: A foto da fachada ocupa a coluna inteira, 100% de largura e altura */}
-          <ScrollReveal direction="up" distance={28} duration={0.8} className="w-full h-full flex flex-col">
-            <div 
-              onClick={() => setIsFullscreen(true)}
-              className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 shadow-2xl w-full h-full min-h-[340px] xs:min-h-[400px] sm:min-h-[460px] md:min-h-full flex-1 group bg-[#222020] cursor-pointer transition-all duration-500 hover:border-white/40 hover:shadow-[0_25px_60px_rgba(0,0,0,0.7)]"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setIsFullscreen(true);
-                }
-              }}
-              aria-label="Ver foto da fachada da loja em tela cheia"
-              title="Clique para ampliar a foto da fachada"
-            >
-              <ImageWithFallback
-                src={IMAGES.fachada}
-                fallbackSrc={IMAGES.cdn.fachada}
-                alt="Fachada oficial da loja J'Cell Acessórios e Variedades em Nanuque - MG"
-                className="w-full h-full absolute inset-0 object-cover object-center transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
-                fallbackLabel="Fachada J'Cell Nanuque"
-              />
+          {/* COLUNA ESQUERDA: A foto da fachada ocupa a coluna inteira no Desktop (>= md) */}
+          <div className="hidden md:flex w-full h-full flex-col">
+            <ScrollReveal direction="up" distance={28} duration={0.8} className="w-full h-full flex flex-col flex-1">
+              {renderFachadaPhoto(false)}
+            </ScrollReveal>
+          </div>
 
-              {/* Degradê sutil cinematográfico */}
-              <div 
-                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"
-                aria-hidden="true"
-              />
-
-              {/* Selos informativos elegantes na base */}
-              <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between pointer-events-none">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/25 text-xs font-semibold text-white shadow-lg">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#E7192D] animate-pulse"></span>
-                  <span>Nossa Loja em Nanuque - MG</span>
-                </div>
-                <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/25 text-xs text-white font-medium">
-                  <i className="fa-solid fa-map-pin text-[#FF5C6C] text-xs" aria-hidden="true"></i>
-                  <span>Calçadão</span>
-                </div>
-              </div>
-
-              {/* Dica de clique para ampliar no hover */}
-              <div className="absolute top-4 right-4 z-10 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/25 text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none flex items-center gap-1.5 shadow-lg transform translate-y-1 group-hover:translate-y-0">
-                <i className="fa-solid fa-expand text-xs" aria-hidden="true"></i>
-                <span>Ampliar</span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* COLUNA DIREITA: Todo o conteúdo de texto aqui, alinhado verticalmente ao centro */}
+          {/* COLUNA DIREITA: Conteúdo textual com cabeçalho no topo, foto inserida em seguida no mobile */}
           <div className="w-full flex flex-col justify-center space-y-6 sm:space-y-7 h-full py-1">
             
-            {/* Identificador da Seção e Título Principal com Alto Contraste WCAG */}
+            {/* 1. Identificador da Seção e Título Principal (Textos Marcados) */}
             <ScrollReveal direction="up" distance={20} duration={0.7} delay={0.05} className="space-y-2 text-center md:text-left">
               <span className="inline-block text-white font-extrabold text-xs sm:text-[13px] tracking-[0.22em] uppercase font-heading drop-shadow-sm">
                 QUEM SOMOS
               </span>
               <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] font-heading font-extrabold text-white leading-tight tracking-tight m-0">
-                Mais de 20 anos ao seu lado!
+                Mais de 15 anos ao seu lado!
               </h2>
             </ScrollReveal>
 
-            {/* Texto Institucional */}
+            {/* 2. NA VERSÃO MOBILE: A foto da fachada entra IMEDIATAMENTE EM SEGUIDA dos textos marcados */}
+            <div className="block md:hidden">
+              <ScrollReveal direction="up" distance={24} duration={0.8}>
+                {renderFachadaPhoto(true)}
+              </ScrollReveal>
+            </div>
+
+            {/* 3. Texto Institucional */}
             <ScrollReveal direction="up" distance={20} duration={0.7} delay={0.12}>
-              <p className="text-base sm:text-[17px] text-white leading-relaxed font-normal m-0 max-w-xl text-center md:text-left mx-auto md:mx-0">
-                A J&apos;Cell faz parte da história de Nanuque há mais de 20 anos! Tudo isso graças à confiança de cada cliente que passou por nossa loja e continua fazendo parte da nossa trajetória. Temos muito orgulho de oferecer, em um só lugar, tudo o que você precisa para o seu celular além de acessórios, eletrônicos e assistência técnica especializada para celulares e tablets.
+              <p className="text-base sm:text-[17px] text-white leading-relaxed font-normal m-0 max-w-xl text-justify mx-auto md:mx-0">
+                A J&apos;Cell faz parte da história de Nanuque há mais de 15 anos! Tudo isso graças à confiança de cada cliente que passou por nossa loja e continua fazendo parte da nossa trajetória. Temos muito orgulho de oferecer, em um só lugar, tudo o que você precisa para o seu celular além de acessórios, eletrônicos e assistência técnica especializada para celulares e tablets.
                 <span className="block mt-4 sm:mt-5 text-white font-semibold">
                   J&apos;Cell uma história construída com você, todos os dias!
                 </span>
@@ -133,7 +151,7 @@ export const AboutSection: React.FC = () => {
             <ScrollReveal direction="up" distance={20} duration={0.7} delay={0.18}>
               <blockquote className="relative rounded-2xl border border-white/20 bg-[#222020]/85 backdrop-blur-md px-6 py-4.5 text-white italic text-base sm:text-[17px] font-medium leading-relaxed shadow-lg shadow-black/35">
                 <span className="text-xl font-serif text-[#FF5C6C] not-italic leading-none mr-2 font-black select-none" aria-hidden="true">“</span>
-                Mais do que vender produtos, queremos conquistar sua confiança e estar presentes no seu dia a dia!
+                Mais do que vender produtos e serviços, queremos conquistar sua confiança e estar presentes no seu dia a dia!
                 <span className="text-xl font-serif text-[#FF5C6C] not-italic leading-none ml-1.5 font-black select-none" aria-hidden="true">”</span>
               </blockquote>
             </ScrollReveal>
@@ -232,7 +250,7 @@ export const AboutSection: React.FC = () => {
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#D7192D] animate-pulse"></span>
               <span className="text-xs sm:text-sm font-semibold tracking-wide uppercase text-neutral-300">
-                Fachada Oficial — J'Cell Nanuque
+                J&apos;Cell Nanuque
               </span>
             </div>
 

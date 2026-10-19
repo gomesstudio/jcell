@@ -5,7 +5,7 @@
 
 // Se vazio (""), exibe em todo o site apenas "Consulte nosso horário pelo WhatsApp".
 // Se preenchido (ex: "Segunda a Sexta: 08:00 às 18:00 | Sábado: 08:00 às 12:00"), exibe o horário.
-export const HORARIO = "";
+export const HORARIO = "Segunda a Sexta: 08:00 às 18:00 | Sábado: 08:00 às 12:00";
 
 // Se preenchido com a URL de um arquivo de vídeo (ex: mp4), exibe o player nativo em 9:16.
 // Se vazio (""), exibe o cartão elegante de redirecionamento para o Instagram oficial.
@@ -34,7 +34,7 @@ export const STORE_INFO = {
 export const IMAGES = {
   logo: "/images/logo.png",
   logoHero: "/images/logo-hero.png",
-  heroBg: "/images/hero-bg.png",
+  heroBg: "/images/hero-bg.png?v=discreet",
   fachada: "/images/fachada.png",
   maquinaPelicula: "/images/maquina.png",
   capasPeliculas: "/images/capas.png",

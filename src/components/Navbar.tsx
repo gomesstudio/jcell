@@ -211,30 +211,6 @@ export const Navbar: React.FC = () => {
                 </a>
               ))}
             </div>
-
-            {/* Ações Rápidas no Menu Mobile com Contraste WCAG Aprovado */}
-            <div className="pt-3 mt-3 border-t border-white/10 flex flex-col gap-2">
-              <a
-                href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Gostaria%20de%20um%20atendimento%20na%20J%27Cell.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={closeMenu}
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#15803D] hover:bg-[#166534] text-white font-semibold text-sm py-3 rounded-xl transition-all shadow-md active:scale-98"
-              >
-                <i className="fa-brands fa-whatsapp text-lg" aria-hidden="true"></i>
-                <span>Falar no WhatsApp</span>
-              </a>
-              <a
-                href={STORE_INFO.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={closeMenu}
-                className="w-full inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white font-medium text-sm py-2.5 rounded-xl border border-white/15 transition-all"
-              >
-                <i className="fa-brands fa-instagram text-base text-pink-400" aria-hidden="true"></i>
-                <span>Instagram: {STORE_INFO.instagramUser}</span>
-              </a>
-            </div>
           </div>
         )}
       </nav>

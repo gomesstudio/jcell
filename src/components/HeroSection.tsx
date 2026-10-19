@@ -56,20 +56,13 @@ export const HeroSection: React.FC = () => {
       className="relative text-white overflow-hidden pt-[var(--header-h)] bg-[#D7192D] min-h-screen min-h-[100svh] min-h-[100dvh] flex flex-col justify-between"
     >
       {/* 1. CAMADA DE FUNDO INDEPENDENTE: Imagem de tecnologia em tons de vermelho e preto
-          Cobrindo toda a seção com background-size: cover e produtos concentrados no lado direito
+          Visível sutilmente ("bem de leve") criando uma atmosfera tecnológica sofisticada sem ofuscar a logo
       */}
       <motion.div 
-        initial={{ opacity: 0.95, scale: 1.01 }}
+        initial={{ opacity: 0.85, scale: 1.01 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"
-        style={{
-          backgroundColor: '#850A19',
-          backgroundImage: `url(${IMAGES.heroBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: '62% 72%',
-          backgroundRepeat: 'no-repeat',
-        }}
+        className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden bg-[#7A0917]"
         aria-hidden="true"
       >
         <img
@@ -80,22 +73,19 @@ export const HeroSection: React.FC = () => {
             const target = e.currentTarget;
             if (target.src !== IMAGES.cdn.heroBg) {
               target.src = IMAGES.cdn.heroBg;
-              if (target.parentElement) {
-                target.parentElement.style.backgroundImage = `url(${IMAGES.cdn.heroBg})`;
-              }
             }
           }}
-          className={`w-full h-full object-cover object-[62%_72%] xs:object-[64%_72%] sm:object-[82%_center] lg:object-right transition-opacity duration-500 ${
-            bgLoaded ? 'opacity-100' : 'opacity-90'
+          className={`w-full h-full object-cover object-[62%_72%] xs:object-[64%_72%] sm:object-[82%_center] lg:object-right transition-opacity duration-700 ${
+            bgLoaded ? 'opacity-40 sm:opacity-55 lg:opacity-65' : 'opacity-0'
           }`}
           loading="eager"
           decoding="async"
         />
       </motion.div>
 
-      {/* 2. CAMADA DE SOBREPOSIÇÃO INDEPENDENTE COM GRADIENTE DE OPACIDADE EM TONALIDADE VERMELHA DA ESQUERDA PARA A DIREITA
-          Garante excelente contraste para a logo e chamadas à esquerda, desvanecendo suavemente em opacidade
-          em direção à direita para exibir a imagem de fundo com total nitidez fotográfica.
+      {/* 2. CAMADA DE SOBREPOSIÇÃO INDEPENDENTE COM GRADIENTE DE OPACIDADE EM TONALIDADE VERMELHA
+          Garante contraste de alta legibilidade para a logo e botões, permitindo que os produtos do fundo
+          surjam com elegância e suavidade ("bem de leve").
       */}
       <div 
         className="absolute inset-0 pointer-events-none select-none z-[1]" 
@@ -105,15 +95,18 @@ export const HeroSection: React.FC = () => {
         <div 
           className="absolute inset-0 hidden sm:block"
           style={{
-            background: 'linear-gradient(to right, #D7192D 0%, rgba(215, 25, 45, 0.94) 28%, rgba(215, 25, 45, 0.72) 48%, rgba(200, 16, 36, 0.35) 68%, rgba(133, 10, 25, 0.10) 84%, transparent 95%)'
+            background: 'linear-gradient(to right, #D7192D 0%, rgba(215, 25, 45, 0.92) 28%, rgba(215, 25, 45, 0.70) 50%, rgba(200, 16, 36, 0.35) 72%, rgba(133, 10, 25, 0.15) 88%, transparent 100%)'
           }}
         />
 
-        {/* Efeito de opacidade gradiente em vermelho da esquerda para a direita (Mobile) */}
+        {/* Efeito de gradiente vermelho equilibrado (Mobile) 
+            Permite que os produtos de fundo apareçam sutilmente ("de leve"),
+            mantendo a proteção e o contraste perfeito para a logo J'Cell
+        */}
         <div 
           className="absolute inset-0 sm:hidden"
           style={{
-            background: 'linear-gradient(to right, rgba(215, 25, 45, 0.94) 0%, rgba(215, 25, 45, 0.82) 35%, rgba(200, 16, 36, 0.50) 65%, rgba(133, 10, 25, 0.15) 85%, transparent 100%)'
+            background: 'linear-gradient(180deg, rgba(215, 25, 45, 0.82) 0%, rgba(215, 25, 45, 0.65) 40%, rgba(190, 15, 33, 0.48) 72%, rgba(125, 10, 24, 0.65) 100%), radial-gradient(circle at 50% 28%, rgba(215, 25, 45, 0.75) 0%, transparent 68%)'
           }}
         />
 
@@ -145,39 +138,21 @@ export const HeroSection: React.FC = () => {
           {/* H1 Acessível para SEO e Leitores de Tela */}
           <h1 className="sr-only">J&apos;Cell Acessórios e Variedades - Nanuque - MG</h1>
 
-          {/* Logo Oficial J'Cell Nítida com Efeito de Profundidade Premium */}
+          {/* Logo Oficial J'Cell em Qualidade Máxima de Resolução (sem sombras e sem brilhos) */}
           <motion.div 
             variants={itemVariants}
-            className="relative w-full max-w-[290px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mb-6 sm:mb-8 will-change-transform flex justify-center sm:justify-start mx-auto sm:mx-0 text-[#FFFFFF] group/logo"
+            className="w-full max-w-[290px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mb-6 sm:mb-8 will-change-transform flex justify-center sm:justify-start mx-auto sm:mx-0 text-[#FFFFFF]"
             style={{ color: '#FFFFFF' }}
           >
-            {/* 1. Halo Óptico de Luz Ambiente Traseiro (Efeito de Profundidade Tridimensional) */}
-            <div 
-              className="absolute -inset-4 sm:-inset-8 rounded-full pointer-events-none select-none opacity-85 transition-opacity duration-700 group-hover/logo:opacity-100"
-              style={{
-                background: 'radial-gradient(ellipse 65% 55% at 45% 50%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 75, 95, 0.18) 35%, rgba(133, 10, 25, 0.25) 65%, transparent 80%)',
-                filter: 'blur(16px)',
-              }}
-              aria-hidden="true"
-            />
-
-            {/* 2. Logotipo com Efeito de Escala Suave (scale-105), Sombra Projetada Acentuada e Brilho de Destaque */}
-            <div className="logo-hero-container relative z-10 w-full flex justify-center sm:justify-start transition-all duration-500 ease-out hover:scale-105 cursor-pointer group/logobox">
-              {/* Brilho radial luminoso de destaque para a logo */}
-              <div 
-                className="absolute inset-0 pointer-events-none -z-10 rounded-full opacity-65 group-hover/logobox:opacity-100 transition-all duration-500 scale-95 group-hover/logobox:scale-110"
-                style={{
-                  background: 'radial-gradient(ellipse 70% 60% at 48% 50%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 95, 115, 0.30) 40%, transparent 75%)',
-                  filter: 'blur(22px)',
-                }}
-                aria-hidden="true"
-              />
-
+            <div className="relative z-10 w-full flex justify-center sm:justify-start">
               <ImageWithFallback
                 src={IMAGES.logoHero}
                 fallbackSrc={IMAGES.cdn.logoHero}
                 alt="J'Cell Acessórios e Variedades"
                 className="logo-hero-img w-full h-auto object-contain select-none pointer-events-none mx-auto sm:mx-0"
+                style={{
+                  filter: 'brightness(0) invert(1)',
+                }}
                 fallbackLabel="J'Cell Acessórios e Variedades"
               />
             </div>

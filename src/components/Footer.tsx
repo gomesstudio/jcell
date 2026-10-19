@@ -4,90 +4,82 @@ import { ImageWithFallback } from './ImageWithFallback';
 import { ScrollReveal } from './ScrollReveal';
 
 export const Footer: React.FC = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="relative text-white pt-10 sm:pt-12 pb-8 sm:pb-10">
-      {/* Transição suave para o rodapé em grafite elegante (#171313) encerrando o site com harmonia */}
+    <footer className="relative text-white pt-14 pb-12 overflow-hidden border-t border-white/10">
+      {/* Fundo escuro premium com gradiente sofisticado e iluminação sutil centralizada */}
       <div 
         className="absolute inset-0 pointer-events-none select-none z-0"
         style={{
-          background: 'linear-gradient(180deg, #42050C 0%, #26050A 30%, #171313 75%, #171313 100%)'
+          background: 'radial-gradient(ellipse at 50% 0%, rgba(231, 25, 45, 0.16) 0%, rgba(23, 19, 19, 0.98) 55%, #120e0f 100%)'
         }}
         aria-hidden="true"
       />
       <div 
-        className="absolute inset-0 pointer-events-none select-none z-0"
+        className="absolute inset-0 pointer-events-none select-none z-0 opacity-25"
         style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(231, 25, 45, 0.25) 0%, transparent 65%)'
+          backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px)',
+          backgroundSize: '24px 24px'
         }}
         aria-hidden="true"
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <ScrollReveal direction="up" distance={16} duration={0.65}>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-5 pb-5 border-b border-white/10 text-xs">
-            {/* Marca compacta */}
-            <div className="flex flex-col sm:flex-row items-center gap-3.5 text-center sm:text-left">
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <ScrollReveal direction="up" distance={20} duration={0.7}>
+          {/* 1. Marca Centralizada com Logo e Tagline de Confiança */}
+          <div className="flex flex-col items-center justify-center space-y-3.5 mb-8">
+            <a 
+              href="#inicio" 
+              className="group inline-flex items-center justify-center p-2 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-[#E7192D]/40 hover:bg-white/[0.08] transition-all duration-300 shadow-lg shadow-black/40"
+              aria-label="J'Cell - Voltar ao início"
+            >
               <ImageWithFallback
                 src={IMAGES.logo}
                 fallbackSrc={IMAGES.cdn.logo}
                 alt={STORE_INFO.name}
-                className="h-8 sm:h-9 w-auto object-contain rounded filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                className="h-10 sm:h-11 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(231,25,45,0.35)] group-hover:scale-105 transition-transform duration-300"
                 fallbackLabel="J'Cell"
               />
-              <div>
-                <p className="font-heading font-bold text-white text-sm tracking-wide m-0">
-                  {STORE_INFO.name}
-                </p>
-                <p className="text-xs text-[#D2CACC] m-0 mt-0.5">
-                  {STORE_INFO.address}
-                </p>
-              </div>
-            </div>
+            </a>
 
-            {/* Links de contato compactos apenas com ícones */}
-            <div className="flex items-center justify-center gap-2.5 sm:gap-3 text-neutral-300">
-              <a 
-                href={`https://wa.me/${STORE_INFO.phoneStoreRaw}?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20J%27Cell.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 hover:border-emerald-400/50 flex items-center justify-center transition-all duration-200 text-white shadow-sm hover:scale-105 active:scale-95 group"
-                title={`WhatsApp Loja: ${STORE_INFO.phoneStore}`}
-                aria-label={`WhatsApp Loja: ${STORE_INFO.phoneStore}`}
-              >
-                <i className="fa-brands fa-whatsapp text-emerald-400 text-base group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-              </a>
-
-              <a 
-                href={`https://wa.me/${STORE_INFO.phoneWorkshopRaw}?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20or%C3%A7amento%20na%20oficina%20da%20J%27Cell.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 hover:border-amber-400/50 flex items-center justify-center transition-all duration-200 text-white shadow-sm hover:scale-105 active:scale-95 group"
-                title={`WhatsApp Oficina: ${STORE_INFO.phoneWorkshop}`}
-                aria-label={`WhatsApp Oficina: ${STORE_INFO.phoneWorkshop}`}
-              >
-                <i className="fa-solid fa-wrench text-amber-400 text-sm group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-              </a>
-
-              <a 
-                href={STORE_INFO.instagramUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 hover:border-pink-400/50 flex items-center justify-center transition-all duration-200 text-white shadow-sm hover:scale-105 active:scale-95 group"
-                title={`Instagram: ${STORE_INFO.instagramUser}`}
-                aria-label={`Instagram: ${STORE_INFO.instagramUser}`}
-              >
-                <i className="fa-brands fa-instagram text-pink-400 text-base group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-              </a>
+            <div className="max-w-xl mx-auto space-y-1.5">
+              <h3 className="font-heading font-bold text-white text-base sm:text-lg tracking-wide uppercase">
+                {STORE_INFO.name}
+              </h3>
+              <p className="text-[#D2CACC] text-xs sm:text-sm leading-relaxed font-normal">
+                Uma história construída com você, todos os dias. Atendimento com transparência, qualidade e confiança.
+              </p>
             </div>
           </div>
 
-          {/* Linha Final de Copyright Ultra-compacta */}
-          <div className="pt-2.5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#D2CACC] gap-1 text-center">
-            <p className="m-0">
-              © {new Date().getFullYear()} {STORE_INFO.name} • Nanuque/MG
+          {/* Horário Comercial Centralizado */}
+          <div className="flex items-center justify-center mb-8">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs text-[#D2CACC]">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>Seg a Sex: 08:00 às 18:00 | Sáb: 08:00 às 12:00</span>
+            </div>
+          </div>
+
+          {/* Linha Final de Copyright & Back to Top (Padrão Corporativo Americano) */}
+          <div className="pt-6 border-t border-white/10 flex flex-col items-center justify-center gap-3 text-center">
+            <p className="text-[11px] sm:text-xs text-[#D2CACC] m-0 tracking-wide font-normal">
+              © {new Date().getFullYear()} {STORE_INFO.name}. Todos os direitos reservados.
             </p>
-            <p className="m-0 text-[#D2CACC]/80">
-              Acessórios, eletrônicos e assistência técnica especializada.
-            </p>
+
+            <button
+              onClick={scrollToTop}
+              className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 text-[11px] text-[#D2CACC] hover:text-white bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 rounded-full transition-all duration-200 group"
+              aria-label="Voltar ao topo da página"
+            >
+              <span>Voltar ao topo</span>
+              <i className="fa-solid fa-arrow-up text-[10px] text-[#FF5C6C] group-hover:-translate-y-0.5 transition-transform duration-200" aria-hidden="true" />
+            </button>
           </div>
         </ScrollReveal>
       </div>
