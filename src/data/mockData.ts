@@ -34,16 +34,16 @@ export const STORE_INFO = {
 export const IMAGES = {
   logo: "/images/logo.png",
   logoHero: "/images/logo-hero.png",
-  heroBg: "/images/hero-bg.png?v=discreet",
-  fachada: "/images/fachada.png",
-  maquinaPelicula: "/images/maquina.png",
-  capasPeliculas: "/images/capas.png",
-  controles: "/images/controles.png",
-  carregadores: "/images/carregadores.png",
-  fones: "/images/fones.png",
-  eletronicos: "/images/eletronicos.png",
-  assistenciaTecnica: "/images/oficina.png",
-  mapaLocal: "/images/mapa-local.png",
+  heroBg: "/images/hero-bg.webp",
+  fachada: "/images/fachada.webp",
+  maquinaPelicula: "/images/maquina.webp",
+  capasPeliculas: "/images/capas.webp",
+  controles: "/images/controles.webp",
+  carregadores: "/images/carregadores.webp",
+  fones: "/images/fones.webp",
+  eletronicos: "/images/eletronicos.webp",
+  assistenciaTecnica: "/images/oficina.webp",
+  mapaLocal: "/images/mapa-local.webp",
   
   // URLs diretas CDN Kommodo como fallback
   cdn: {
