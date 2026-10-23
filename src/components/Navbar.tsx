@@ -15,7 +15,6 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Início', href: '#inicio', id: 'inicio' },
   { label: 'Sobre', href: '#sobre', id: 'sobre' },
   { label: 'Produtos', href: '#produtos', id: 'produtos' },
-  { label: 'Películas', href: '#pelicula', id: 'pelicula' },
   { label: 'Assistência Técnica', href: '#oficina', id: 'oficina' },
   { label: 'Conheça a Loja', href: '#video', id: 'video' },
   { label: 'Localização', href: '#localizacao', id: 'localizacao' },
