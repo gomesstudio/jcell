@@ -40,6 +40,10 @@ export const Footer: React.FC = () => {
                 src={IMAGES.logo}
                 fallbackSrc={IMAGES.cdn.logo}
                 alt={STORE_INFO.name}
+                width={160}
+                height={44}
+                loading="lazy"
+                decoding="async"
                 className="h-10 sm:h-11 w-auto object-contain filter drop-shadow-[0_2px_8px_rgba(231,25,45,0.35)] group-hover:scale-105 transition-transform duration-300"
                 fallbackLabel="J'Cell"
               />

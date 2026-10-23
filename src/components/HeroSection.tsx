@@ -141,7 +141,7 @@ export const HeroSection: React.FC = () => {
           {/* Logo Oficial J'Cell em Qualidade Máxima de Resolução (sem sombras e sem brilhos) */}
           <motion.div 
             variants={itemVariants}
-            className="w-full max-w-[290px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mb-6 sm:mb-8 will-change-transform flex justify-center sm:justify-start mx-auto sm:mx-0 text-[#FFFFFF]"
+            className="w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mb-6 sm:mb-8 will-change-transform flex justify-center sm:justify-start mx-auto sm:mx-0 text-[#FFFFFF]"
             style={{ color: '#FFFFFF' }}
           >
             <div className="relative z-10 w-full flex justify-center sm:justify-start">
@@ -149,6 +149,10 @@ export const HeroSection: React.FC = () => {
                 src={IMAGES.logoHero}
                 fallbackSrc={IMAGES.cdn.logoHero}
                 alt="J'Cell Acessórios e Variedades"
+                width={500}
+                height={167}
+                loading="eager"
+                decoding="async"
                 className="logo-hero-img w-full h-auto object-contain select-none pointer-events-none mx-auto sm:mx-0"
                 style={{
                   filter: 'brightness(0) invert(1)',
@@ -161,7 +165,7 @@ export const HeroSection: React.FC = () => {
           {/* Botões de Ação: Fale Conosco (WhatsApp) e Instagram pareados com o centro da logo */}
           <motion.div 
             variants={buttonVariants}
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full max-w-[290px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mx-auto sm:mx-0"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-3.5 w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[500px] mx-auto sm:mx-0"
           >
             <motion.a
               whileHover={{ scale: 1.03, y: -2 }}

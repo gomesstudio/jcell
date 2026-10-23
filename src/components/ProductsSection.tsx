@@ -138,7 +138,7 @@ export const ProductsSection: React.FC = () => {
         </ScrollReveal>
 
         {/* 2. Área do Carrossel com Setas Interativas Flutuantes e Scroll Reveal */}
-        <ScrollReveal direction="up" distance={24} duration={0.8} delay={0.1} className="relative group/carousel max-w-[320px] xs:max-w-[360px] sm:max-w-none mx-auto">
+        <ScrollReveal direction="up" distance={24} duration={0.8} delay={0.1} className="relative group/carousel max-w-[280px] xs:max-w-[340px] sm:max-w-none mx-auto">
           {/* Seta clicável esquerda flutuante */}
           <button
             type="button"
@@ -325,6 +325,8 @@ export const ProductsSection: React.FC = () => {
             <img 
               src={fullscreenItem.image} 
               alt={`${fullscreenItem.title} em tela cheia`}
+              loading="lazy"
+              decoding="async"
               className="max-h-[76vh] max-w-[92vw] w-auto h-auto object-contain rounded-2xl shadow-2xl"
             />
           </div>

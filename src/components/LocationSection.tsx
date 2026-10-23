@@ -150,6 +150,10 @@ export const LocationSection: React.FC = () => {
                     <img 
                       src={IMAGES.logo} 
                       alt="J'Cell Acessórios e Variedades" 
+                      width={180}
+                      height={72}
+                      loading="lazy"
+                      decoding="async"
                       className="h-14 sm:h-16 md:h-18 w-auto object-contain rounded-xl select-none pointer-events-none" 
                     />
                   </div>

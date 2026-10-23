@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-xs: 380px;
+}
+
 @layer base {
   :root {
     --header-h: 64px;
@@ -255,6 +259,28 @@
   }
 }
 
+@keyframes arrowDriftRight {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.82;
+  }
+  50% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+}
+
+@keyframes arrowBounceDown {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.82;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .animate-ambient-1 {
     animation: ambientDrift1 22s ease-in-out infinite;
@@ -270,6 +296,14 @@
   }
   .animate-wave-pulse {
     animation: wavePulse 18s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .animate-arrow-drift {
+    animation: arrowDriftRight 2.2s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+  .animate-arrow-bounce {
+    animation: arrowBounceDown 2s ease-in-out infinite;
     will-change: transform, opacity;
   }
 }

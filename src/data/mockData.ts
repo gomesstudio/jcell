@@ -7,9 +7,17 @@
 // Se preenchido (ex: "Segunda a Sexta: 08:00 às 18:00 | Sábado: 08:00 às 12:00"), exibe o horário.
 export const HORARIO = "Segunda a Sexta: 08:00 às 18:00 | Sábado: 08:00 às 12:00";
 
-// Se preenchido com a URL de um arquivo de vídeo (ex: mp4), exibe o player nativo em 9:16.
-// Se vazio (""), exibe o cartão elegante de redirecionamento para o Instagram oficial.
-export const VIDEO_URL = "";
+export const VIDEO_CONFIG = {
+  youtubeId: "9sFhOup2Js0",
+  youtubeUrl: "https://youtube.com/shorts/9sFhOup2Js0?feature=share",
+  embedUrl: "https://www.youtube-nocookie.com/embed/9sFhOup2Js0?autoplay=1&rel=0&playsinline=1&modestbranding=1",
+  thumbnail: "/images/video-thumb.webp",
+  thumbnailFallback: "/images/video-thumb.png",
+  thumbnailCdn: "https://plain-enam-prod-public.komododecks.com/202610/23/n1PgvTkTuFryFucfStxq/image.png",
+};
+
+// Mantido para compatibilidade retroativa
+export const VIDEO_URL = VIDEO_CONFIG.embedUrl;
 
 export const STORE_INFO = {
   name: "J'Cell Acessórios e Variedades",
@@ -44,6 +52,7 @@ export const IMAGES = {
   eletronicos: "/images/eletronicos.webp",
   assistenciaTecnica: "/images/oficina.webp",
   mapaLocal: "/images/mapa-local.webp",
+  videoThumb: "/images/video-thumb.webp",
   
   // URLs diretas CDN Kommodo como fallback
   cdn: {
@@ -59,6 +68,7 @@ export const IMAGES = {
     eletronicos: "https://plain-enam-prod-public.komododecks.com/202610/12/VGF42izYBs77bo5uMUrK/image.png",
     assistenciaTecnica: "https://plain-enam-prod-public.komododecks.com/202610/12/xQg0u9nvgVH09JbPJTyx/image.png",
     mapaLocal: "https://plain-enam-prod-public.komododecks.com/202610/13/oOodYXDzsCODeZ0dTW3X/image.png",
+    videoThumb: "https://plain-enam-prod-public.komododecks.com/202610/23/n1PgvTkTuFryFucfStxq/image.png",
   }
 };
 

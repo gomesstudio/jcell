@@ -113,7 +113,7 @@ export default function App() {
           </Suspense>
 
           {/* 6. Conheça a Loja (Vídeo): Continuidade Fluida */}
-          <Suspense fallback={<div className="min-h-[380px] w-full" aria-hidden="true" />}>
+          <Suspense fallback={<div className="min-h-[480px] w-full" aria-hidden="true" />}>
             <VideoSection />
           </Suspense>
 

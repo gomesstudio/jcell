@@ -123,6 +123,10 @@ export const Navbar: React.FC = () => {
                 src={IMAGES.logo}
                 fallbackSrc={IMAGES.cdn.logo}
                 alt={STORE_INFO.name}
+                width={140}
+                height={32}
+                loading="eager"
+                decoding="async"
                 className="h-7 sm:h-8 w-auto object-contain drop-shadow-sm"
                 fallbackLabel="J'Cell"
               />

@@ -272,6 +272,8 @@ export const AboutSection: React.FC = () => {
             <img 
               src={IMAGES.fachada} 
               alt="Fachada oficial da loja J'Cell Acessórios e Variedades em tela cheia"
+              loading="lazy"
+              decoding="async"
               className="max-h-[82vh] max-w-[92vw] w-auto h-auto object-contain rounded-2xl shadow-2xl"
             />
           </div>

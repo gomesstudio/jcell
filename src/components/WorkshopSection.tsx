@@ -331,6 +331,8 @@ export const WorkshopSection: React.FC = () => {
             <img 
               src={IMAGES.assistenciaTecnica} 
               alt="Bancada de assistência técnica especializada da J'Cell em tela cheia"
+              loading="lazy"
+              decoding="async"
               className="max-h-[82vh] max-w-[92vw] w-auto h-auto object-contain rounded-2xl shadow-2xl"
             />
           </div>
