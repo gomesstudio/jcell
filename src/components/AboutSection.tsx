@@ -84,8 +84,10 @@ export const AboutSection: React.FC = () => {
   return (
     <section 
       id="sobre" 
-      className="pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 relative text-white overflow-hidden"
+      className="py-16 relative text-white overflow-hidden"
       style={{
+        paddingTop: '4rem',
+        paddingBottom: '4rem',
         background: 'linear-gradient(180deg, #C81024 0%, #B80E21 25%, #9E0D1F 60%, #850A19 100%)'
       }}
     >
@@ -139,7 +141,7 @@ export const AboutSection: React.FC = () => {
 
             {/* 3. Texto Institucional */}
             <ScrollReveal direction="up" distance={20} duration={0.7} delay={0.12}>
-              <p className="text-base sm:text-[17px] text-white leading-relaxed font-normal m-0 max-w-xl text-justify mx-auto md:mx-0">
+              <p className="text-base sm:text-[17px] text-white leading-relaxed font-normal m-0 max-w-xl text-center md:text-justify mx-auto md:mx-0">
                 A J&apos;Cell faz parte da história de Nanuque há mais de 15 anos! Tudo isso graças à confiança de cada cliente que passou por nossa loja e continua fazendo parte da nossa trajetória. Temos muito orgulho de oferecer, em um só lugar, tudo o que você precisa para o seu celular além de acessórios, eletrônicos e assistência técnica especializada para celulares e tablets.
                 <span className="block mt-4 sm:mt-5 text-white font-semibold">
                   J&apos;Cell uma história construída com você, todos os dias!

@@ -27,39 +27,95 @@ export const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState('inicio');
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const isClickScrollingRef = useRef(false);
+  const clickTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Monitor scroll for shadow
+  // Monitora scroll para efeito de sombra no navbar e detecção contínua da seção ativa
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Se o usuário acabou de clicar em um item de menu, não sobrescreve a marcação durante a rolagem
+      if (isClickScrollingRef.current) return;
+
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // Se estiver no topo da página
+          if (window.scrollY < 120) {
+            setActiveSection('inicio');
+            ticking = false;
+            return;
+          }
+
+          // Se estiver no final da página (rodapé/localização)
+          if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+            setActiveSection(NAV_ITEMS[NAV_ITEMS.length - 1].id);
+            ticking = false;
+            return;
+          }
+
+          // Posição de leitura com margem compensatória do cabeçalho
+          const scrollPosition = window.scrollY + 140;
+
+          // Verifica de baixo para cima qual seção está visível no DOM
+          for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
+            const item = NAV_ITEMS[i];
+            const el = document.getElementById(item.id);
+            if (el) {
+              const top = el.offsetTop;
+              if (scrollPosition >= top) {
+                setActiveSection(item.id);
+                break;
+              }
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    // Executa na inicialização e após a montagem dos componentes
+    handleScroll();
+    const timer = setTimeout(handleScroll, 400);
 
-  // IntersectionObserver for active section highlight
-  useEffect(() => {
-    const observerCallback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+      if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
     };
-
-    const observer = new IntersectionObserver(observerCallback, {
-      root: null,
-      rootMargin: '-30% 0px -60% 0px',
-      threshold: 0,
-    });
-
-    NAV_ITEMS.forEach((item) => {
-      const el = document.getElementById(item.id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
   }, []);
+
+  // Navegação ao clicar em qualquer item: atualiza a linha branca imediatamente e rola suavemente
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    setActiveSection(id);
+    setMobileMenuOpen(false);
+
+    // Trava temporariamente a detecção automática durante o scroll
+    isClickScrollingRef.current = true;
+    if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current);
+    clickTimeoutRef.current = setTimeout(() => {
+      isClickScrollingRef.current = false;
+    }, 900);
+
+    const el = document.getElementById(id);
+    if (el) {
+      const headerOffset = 64;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+      window.history.pushState(null, '', `#${id}`);
+    } else {
+      window.location.hash = id;
+    }
+  };
 
   // Close on Esc key
   useEffect(() => {
@@ -114,6 +170,7 @@ export const Navbar: React.FC = () => {
           {/* Logo Oficial J'Cell */}
           <a 
             href="#inicio" 
+            onClick={(e) => handleNavClick(e, 'inicio')}
             className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-lg transition-transform duration-200 hover:scale-[1.02] shrink-0"
             aria-label="J'Cell Acessórios e Variedades - Ir para o início"
           >
@@ -138,6 +195,7 @@ export const Navbar: React.FC = () => {
               <a
                 key={item.id}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.id)}
                 className={`text-sm font-medium transition-all duration-200 py-1.5 border-b-2 tracking-normal whitespace-nowrap shrink-0 ${
                   activeSection === item.id
                     ? 'text-white border-white font-semibold'
@@ -202,7 +260,7 @@ export const Navbar: React.FC = () => {
                 <a
                   key={item.id}
                   href={item.href}
-                  onClick={closeMenu}
+                  onClick={(e) => handleNavClick(e, item.id)}
                   className={`flex items-center justify-between min-h-[48px] px-3 rounded-xl text-base font-medium transition-all ${
                     activeSection === item.id 
                       ? 'bg-white/10 text-white font-semibold' 
