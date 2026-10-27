@@ -277,6 +277,11 @@ export const AboutSection: React.FC = () => {
               loading="lazy"
               decoding="async"
               className="max-h-[82vh] max-w-[92vw] w-auto h-auto object-contain rounded-2xl shadow-2xl"
+              onError={(e) => {
+                if (e.currentTarget.src !== IMAGES.cdn.fachada) {
+                  e.currentTarget.src = IMAGES.cdn.fachada;
+                }
+              }}
             />
           </div>
 

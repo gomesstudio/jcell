@@ -13,7 +13,7 @@ export const VIDEO_CONFIG = {
   embedUrl: "https://www.youtube-nocookie.com/embed/9sFhOup2Js0?autoplay=1&rel=0&playsinline=1&modestbranding=1",
   thumbnail: "/images/video-thumb.webp",
   thumbnailFallback: "/images/video-thumb.png",
-  thumbnailCdn: "https://plain-enam-prod-public.komododecks.com/202610/23/n1PgvTkTuFryFucfStxq/image.png",
+  thumbnailCdn: "https://plain-enam-prod-public.komododecks.com/202610/27/qFhInLxHa0ZBsydXlxFo/image.png",
 };
 
 // Mantido para compatibilidade retroativa
@@ -59,7 +59,7 @@ export const IMAGES = {
     logo: "https://plain-enam-prod-public.komododecks.com/202610/12/ZFRCC9PP1gthn2jAs6a7/image.jpg",
     logoHero: "https://plain-enam-prod-public.komododecks.com/202610/12/WN3Uy4uhSxKht5ZZYLrV/image.png",
     heroBg: "https://plain-enam-prod-public.komododecks.com/202610/12/ADUKR5kYHkgqzeEP5YRP/image.png",
-    fachada: "https://plain-enam-prod-public.komododecks.com/202610/12/1oq5GkDAZu0zUCzdLvch/image.png",
+    fachada: "https://plain-enam-prod-public.komododecks.com/202610/27/ZzJbaqJVTZkkx7vzLur3/image.png",
     maquinaPelicula: "https://plain-enam-prod-public.komododecks.com/202610/12/57EtuiupeG9818h43s5J/image.png",
     capasPeliculas: "https://plain-enam-prod-public.komododecks.com/202610/12/roeQmfOsDAq9YHSkntkU/image.png",
     controles: "https://plain-enam-prod-public.komododecks.com/202610/12/zjSi4o2YH8mxl4yKdCvk/image.png",
@@ -68,7 +68,7 @@ export const IMAGES = {
     eletronicos: "https://plain-enam-prod-public.komododecks.com/202610/12/VGF42izYBs77bo5uMUrK/image.png",
     assistenciaTecnica: "https://plain-enam-prod-public.komododecks.com/202610/12/xQg0u9nvgVH09JbPJTyx/image.png",
     mapaLocal: "https://plain-enam-prod-public.komododecks.com/202610/13/oOodYXDzsCODeZ0dTW3X/image.png",
-    videoThumb: "https://plain-enam-prod-public.komododecks.com/202610/23/n1PgvTkTuFryFucfStxq/image.png",
+    videoThumb: "https://plain-enam-prod-public.komododecks.com/202610/27/qFhInLxHa0ZBsydXlxFo/image.png",
   }
 };
 
